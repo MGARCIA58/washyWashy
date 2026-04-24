@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="CustomerBodies" format=3 uid="uid://dh0la2n1eleh4"]
+
+[ext_resource type="Texture2D" uid="uid://c4p1ju5d4hv1i" path="res://Assets/Characters/C3_loading_laundry.png" id="1_i4og8"]
+[ext_resource type="Script" uid="uid://d4akkdny7sw7b" path="res://Resources/customer_bodies.gd" id="1_sp0cu"]
+[ext_resource type="Texture2D" uid="uid://drtf3ymmd4xej" path="res://Assets/Characters/C3_Waiting.png" id="3_cm0oy"]
+[ext_resource type="Texture2D" uid="uid://dqx8cabu8cndx" path="res://Assets/Characters/C3_Waiting_Dirty.png" id="4_tcq5i"]
+[ext_resource type="Texture2D" uid="uid://dtfpq0nogf1jf" path="res://Assets/Characters/C3_Walking_clean.png" id="5_dt353"]
+[ext_resource type="Texture2D" uid="uid://dljmnb0vwjaos" path="res://Assets/Characters/C3_Walking_dirty.png" id="6_ry0vp"]
+[ext_resource type="Texture2D" uid="uid://dk6yx1xsmavmx" path="res://Assets/Characters/C3_Walking_dirty_back.png" id="7_eirs1"]
+
+[resource]
+script = ExtResource("1_sp0cu")
+waiting_dirty = ExtResource("4_tcq5i")
+waiting = ExtResource("3_cm0oy")
+walking_clean = ExtResource("5_dt353")
+walking_dirty = ExtResource("6_ry0vp")
+walking_dirty_back = ExtResource("7_eirs1")
+loading_laundry = ExtResource("1_i4og8")
+metadata/_custom_type_script = "uid://d4akkdny7sw7b"
