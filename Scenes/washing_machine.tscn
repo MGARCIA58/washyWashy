@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://bb8ut3y60a13o"]
+
+[ext_resource type="Texture2D" uid="uid://ckf4yi7wfw8tk" path="res://Assets/Washers/wash0.png" id="1_1tly0"]
+[ext_resource type="Script" uid="uid://bxf5onifh7wor" path="res://Scenes/washing_machine.gd" id="1_32040"]
+[ext_resource type="Texture2D" uid="uid://34kbjhghgvmh" path="res://Assets/Washers/wash1.png" id="3_jvwyg"]
+[ext_resource type="Texture2D" uid="uid://cr2yd674nooje" path="res://Assets/Washers/wash2.png" id="4_pk6di"]
+[ext_resource type="Texture2D" uid="uid://bpho34sne2i3m" path="res://Assets/Washers/wash3.png" id="5_byjw2"]
+[ext_resource type="Texture2D" uid="uid://d157qdcf1rpe8" path="res://Assets/Washers/wash4.png" id="6_ev73b"]
+[ext_resource type="Texture2D" uid="uid://dxiijg2x2uwuu" path="res://Assets/Washers/wash5.png" id="7_rityg"]
+[ext_resource type="Texture2D" uid="uid://db6j6282uurql" path="res://Assets/Washers/wash6.png" id="8_tl235"]
+
+[sub_resource type="Animation" id="Animation_32040"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2)]
+}
+
+[sub_resource type="Animation" id="Animation_n6hf4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.2617994]
+}
+
+[sub_resource type="Animation" id="Animation_1tly0"]
+resource_name = "washing_0"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.2617994, 0.2617994]
+}
+
+[sub_resource type="Animation" id="Animation_qijpm"]
+resource_name = "washing_1"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.2268928, 0.2268928]
+}
+
+[sub_resource type="Animation" id="Animation_v5yqk"]
+resource_name = "washing_2"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.19198622, 0.19198622]
+}
+
+[sub_resource type="Animation" id="Animation_ysq8g"]
+resource_name = "washing_3"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.15707964, 0.15707964]
+}
+
+[sub_resource type="Animation" id="Animation_0xxjw"]
+resource_name = "washing_4"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.12217305, 0.12217305]
+}
+
+[sub_resource type="Animation" id="Animation_jvwyg"]
+resource_name = "washing_5"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.08726646, 0.08726646]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qijpm"]
+_data = {
+&"Idle": SubResource("Animation_32040"),
+&"RESET": SubResource("Animation_n6hf4"),
+&"washing_0": SubResource("Animation_1tly0"),
+&"washing_1": SubResource("Animation_qijpm"),
+&"washing_2": SubResource("Animation_v5yqk"),
+&"washing_3": SubResource("Animation_ysq8g"),
+&"washing_4": SubResource("Animation_0xxjw"),
+&"washing_5": SubResource("Animation_jvwyg")
+}
+
+[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("animation_player", "body")]
+script = ExtResource("1_32040")
+animation_player = NodePath("AnimationPlayer")
+wash_0 = ExtResource("1_1tly0")
+wash_1 = ExtResource("3_jvwyg")
+wash_2 = ExtResource("4_pk6di")
+wash_3 = ExtResource("5_byjw2")
+wash_4 = ExtResource("6_ev73b")
+wash_5 = ExtResource("7_rityg")
+wash_6 = ExtResource("8_tl235")
+body = NodePath("Body")
+
+[node name="Body" type="Sprite2D" parent="." unique_id=1581394186]
+rotation = -0.2617994
+texture = ExtResource("1_1tly0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1165976934]
+libraries/ = SubResource("AnimationLibrary_qijpm")
+autoplay = &"Idle"
