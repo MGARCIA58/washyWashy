@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="WashyWashy"
+run/main_scene="uid://br2003rryt1vg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*uid://bolv8oc5bj46i"
 
 [display]
 

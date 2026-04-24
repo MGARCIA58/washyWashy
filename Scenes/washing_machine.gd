@@ -38,5 +38,5 @@ func load_laundry(quantity: int) -> void:
 	
 
 func wash() -> void:
-	var wash_string: String = 'washing_%i' % wash_level
+	var wash_string: String = 'wash_%i' % wash_level
 	animation_player.play(wash_string)

@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://br2003rryt1vg"]
+
+[ext_resource type="Texture2D" uid="uid://dxkuk57gopqqd" path="res://Assets/Background/base.png" id="1_wrm1d"]
+[ext_resource type="Texture2D" uid="uid://cslcrpma22lwh" path="res://Assets/Background/pared.png" id="2_3dryh"]
+[ext_resource type="Texture2D" uid="uid://cr2xteqg7t6k8" path="res://Assets/Background/Fachada.png" id="3_wowpa"]
+[ext_resource type="Script" uid="uid://c2gw0st8vi2ln" path="res://Scenes/customer_manager.gd" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://b8l1j3lwsc03y" path="res://Scenes/customer.tscn" id="4_wowpa"]
+[ext_resource type="Script" uid="uid://d4akkdny7sw7b" path="res://Resources/customer_bodies.gd" id="5_h4fw4"]
+[ext_resource type="Resource" uid="uid://ga1sy1hm0y4k" path="res://Resources/c1.tres" id="6_ldgsr"]
+[ext_resource type="Resource" uid="uid://du85led25mbo0" path="res://Resources/c2.tres" id="7_o5yvi"]
+[ext_resource type="Resource" uid="uid://dh0la2n1eleh4" path="res://Resources/c3.tres" id="8_rku1e"]
+[ext_resource type="Resource" uid="uid://ckpxwn1v1kf8w" path="res://Resources/c4.tres" id="9_rfjv2"]
+
+[node name="Game" type="Node2D" unique_id=849719722]
+
+[node name="Background" type="Node2D" parent="." unique_id=964466233]
+
+[node name="Background_Base" type="Sprite2D" parent="Background" unique_id=1174361863]
+position = Vector2(960, 551)
+scale = Vector2(1.0756836, 1.0756836)
+texture = ExtResource("1_wrm1d")
+
+[node name="Background_Wall" type="Sprite2D" parent="Background" unique_id=835025374]
+visible = false
+position = Vector2(685, 315)
+scale = Vector2(1.076, 1.076)
+texture = ExtResource("2_3dryh")
+
+[node name="Background_Front" type="Sprite2D" parent="Background" unique_id=156987487]
+visible = false
+z_index = 2
+position = Vector2(714.99994, 691.99994)
+scale = Vector2(1.076, 1.076)
+texture = ExtResource("3_wowpa")
+
+[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker")]
+script = ExtResource("4_3dryh")
+customerScene = ExtResource("4_wowpa")
+customerBodies = Array[ExtResource("5_h4fw4")]([ExtResource("6_ldgsr"), ExtResource("7_o5yvi"), ExtResource("8_rku1e"), ExtResource("9_rfjv2")])
+spawn_marker = NodePath("SpawnMarker")
+corner_marker = NodePath("CornerMarker")
+front_marker = NodePath("FrontMarker")
+waiting_marker = NodePath("WaitingMarker")
+
+[node name="SpawnMarker" type="Marker2D" parent="CustomerManager" unique_id=1007198091]
+position = Vector2(959, 225)
+
+[node name="CornerMarker" type="Marker2D" parent="CustomerManager" unique_id=560793298]
+position = Vector2(151, 533)
+
+[node name="FrontMarker" type="Marker2D" parent="CustomerManager" unique_id=1144963024]
+position = Vector2(572, 806)
+
+[node name="WaitingMarker" type="Marker2D" parent="CustomerManager" unique_id=1930833020]
+position = Vector2(738, 715)
+
+[node name="Timer" type="Timer" parent="CustomerManager" unique_id=1351809370]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
