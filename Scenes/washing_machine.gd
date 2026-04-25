@@ -63,7 +63,7 @@ func level_up() -> void:
 			GameManager.level_5_machines_quantity += 1
 		6:
 			body.texture = wash_6
-			upgrade_coin_percentage = 16.41
+			upgrade_coin_percentage = 5.41
 			GameManager.level_5_machines_quantity -= 1
 			GameManager.level_6_machines_quantity += 1
 	
@@ -92,7 +92,7 @@ func get_coin_time_when_level_up() -> Array[int]:
 		5:
 			local_upgrade_coin_percentage = 9.38
 		6:
-			local_upgrade_coin_percentage = 16.41
+			local_upgrade_coin_percentage = 5.41
 	local_coin_quantity = ceil(local_coin_quantity * local_upgrade_coin_percentage)
 	local_time_quantity -= upgrade_time_reduction
 	return [local_coin_quantity,local_time_quantity]

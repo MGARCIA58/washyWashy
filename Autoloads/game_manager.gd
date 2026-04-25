@@ -40,7 +40,7 @@ func get_upgrade_cost(washer_level) -> float:
 		5:
 			costoBase = 10000
 		6:
-			costoBase = 46000
+			costoBase = 86000
 	
 	return costoBase * upgrade_percentage * washer_level
 
