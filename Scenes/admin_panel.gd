@@ -52,11 +52,11 @@ func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
 	
 	current_wash_machine_texture.texture = washer.body.texture
 	level_label.text = 'LEVEL %s' % str(washer.wash_level)
-	coin_quantity.text = str(washer.coin_quantity)
+	coin_quantity.text = GameManager.format_coins(washer.coin_quantity)
 	time_quantity.text = str(washer.time_quantity)
 	wash_machine_asset.texture = washer.get_wash_texture_when_level_up()
 	var arrayCoinTime = washer.get_coin_time_when_level_up()
-	upgrade_coin_quantity.text = str(arrayCoinTime[0])
+	upgrade_coin_quantity.text = GameManager.format_coins(arrayCoinTime[0])
 	upgrade_time_quantity.text = str(arrayCoinTime[1])
 	button.text = GameManager.format_coins(GameManager.get_upgrade_cost(washer.wash_level))
 

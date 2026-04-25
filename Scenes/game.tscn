@@ -48,12 +48,12 @@ font_color = Color(0.10224319, 0.10224321, 0.10224321, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mg4q0"]
 font = SubResource("SystemFont_7t8sx")
-font_size = 50
+font_size = 35
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_vm72l"]
 font = ExtResource("13_nnt18")
-font_size = 50
+font_size = 35
 font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nbq1"]
@@ -81,7 +81,12 @@ corner_radius_bottom_right = 1000
 corner_radius_bottom_left = 1000
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t8sx"]
-bg_color = Color(0.7921569, 0.7921569, 0.7921569, 0.3764706)
+bg_color = Color(0.8650207, 0.8040347, 0.34582615, 0.3764706)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.69454527, 0.59104806, 0.12941709, 1)
 corner_radius_top_left = 1000
 corner_radius_top_right = 1000
 corner_radius_bottom_right = 1000
@@ -121,7 +126,7 @@ waiting_marker = NodePath("WaitingMarker")
 timer = NodePath("Timer")
 
 [node name="SpawnMarker" type="Marker2D" parent="CustomerManager" unique_id=1007198091]
-position = Vector2(830, 225)
+position = Vector2(-229, 291)
 
 [node name="CornerMarker" type="Marker2D" parent="CustomerManager" unique_id=560793298]
 position = Vector2(22, 533)
@@ -140,13 +145,49 @@ autostart = true
 position = Vector2(984, 347.99997)
 
 [node name="WashingMachine2" parent="." unique_id=410289551 instance=ExtResource("11_o5yvi")]
-position = Vector2(1375, 523)
+position = Vector2(1156, 417)
 
 [node name="WashingMachine3" parent="." unique_id=893897098 instance=ExtResource("11_o5yvi")]
-position = Vector2(1255, 582)
+position = Vector2(1321, 493)
 
 [node name="WashingMachine4" parent="." unique_id=1249994898 instance=ExtResource("11_o5yvi")]
-position = Vector2(812, 427)
+position = Vector2(1490, 572)
+
+[node name="WashingMachine5" parent="." unique_id=105391307 instance=ExtResource("11_o5yvi")]
+position = Vector2(862, 407)
+
+[node name="WashingMachine6" parent="." unique_id=1799537458 instance=ExtResource("11_o5yvi")]
+position = Vector2(1034, 476.99994)
+
+[node name="WashingMachine7" parent="." unique_id=1389973262 instance=ExtResource("11_o5yvi")]
+position = Vector2(1197, 555)
+
+[node name="WashingMachine8" parent="." unique_id=1151756827 instance=ExtResource("11_o5yvi")]
+position = Vector2(1363, 628)
+
+[node name="WashingMachine9" parent="." unique_id=1822446458 instance=ExtResource("11_o5yvi")]
+position = Vector2(736.99994, 467.00003)
+
+[node name="WashingMachine10" parent="." unique_id=1078541086 instance=ExtResource("11_o5yvi")]
+position = Vector2(902, 537)
+
+[node name="WashingMachine11" parent="." unique_id=249831881 instance=ExtResource("11_o5yvi")]
+position = Vector2(1068, 610)
+
+[node name="WashingMachine12" parent="." unique_id=1582554301 instance=ExtResource("11_o5yvi")]
+position = Vector2(1237, 689)
+
+[node name="WashingMachine13" parent="." unique_id=1128182561 instance=ExtResource("11_o5yvi")]
+position = Vector2(611, 531)
+
+[node name="WashingMachine14" parent="." unique_id=1483091154 instance=ExtResource("11_o5yvi")]
+position = Vector2(770, 597)
+
+[node name="WashingMachine15" parent="." unique_id=843062483 instance=ExtResource("11_o5yvi")]
+position = Vector2(937, 669.99994)
+
+[node name="WashingMachine16" parent="." unique_id=1310113461 instance=ExtResource("11_o5yvi")]
+position = Vector2(1105, 753)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
@@ -170,7 +211,7 @@ time_quantity = NodePath("VBoxContainer/MachineStatsContainer/TimePerClothContai
 wash_machine_asset = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Head Card/WashMachineAsset")
 upgrade_coin_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/UpgradeCoinQuantity")
 upgrade_time_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/UpgradeTimeQuantity")
-button = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Head Card/Button")
+button = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Button Container/Button")
 total_machines_quantity_label = NodePath("VBoxContainer/StatsContainer/MyMachinesContainer/TotalMachinesQuantityLabel")
 level_1_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level1MachinesContainer/Level1MachinesQuantity")
 level_2_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level2MachinesContainer/Level2MachinesQuantity")
@@ -253,28 +294,36 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="CoinsPerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer" unique_id=1247199235]
-custom_minimum_size = Vector2(235, 50)
+custom_minimum_size = Vector2(240, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="CoinsPerClothInfoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer" unique_id=649669287]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Coin" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=2093460393]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("14_iivbl")
 expand_mode = 1
 stretch_mode = 5
 
 [node name="Slash" type="Label" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=313996382]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 6
 text = "/"
 label_settings = SubResource("LabelSettings_mg4q0")
 
 [node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=148565763]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("15_7nbq1")
 expand_mode = 1
 stretch_mode = 5
@@ -294,7 +343,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Time" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=1675402235]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("16_exi56")
 expand_mode = 1
@@ -307,7 +356,7 @@ text = "/"
 label_settings = SubResource("LabelSettings_mg4q0")
 
 [node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=138471390]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("15_7nbq1")
 expand_mode = 1
@@ -358,36 +407,20 @@ texture = ExtResource("14_ewbju")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="UpgradeTags" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=1928634839]
-custom_minimum_size = Vector2(50, 0)
-layout_mode = 2
-
-[node name="BestPrice" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/UpgradeTags" unique_id=521711931]
-custom_minimum_size = Vector2(50, 50)
+[node name="BestPrice" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=521711931]
+custom_minimum_size = Vector2(75, 50)
 layout_mode = 2
 texture = ExtResource("15_85qyi")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Upgrade" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/UpgradeTags" unique_id=896935649]
+[node name="Upgrade" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=896935649]
 modulate = Color(0.2954278, 0.68313724, 0.9988114, 1)
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(75, 50)
 layout_mode = 2
 texture = ExtResource("19_7nbq1")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="Button" type="Button" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=1784359697]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("13_nnt18")
-theme_override_font_sizes/font_size = 20
-theme_override_styles/normal = SubResource("StyleBoxFlat_exi56")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7t8sx")
-text = "$10"
 
 [node name="CoinsPerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=1009713126]
 custom_minimum_size = Vector2(240, 25)
@@ -397,7 +430,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Coin" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=479804364]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("14_iivbl")
 expand_mode = 1
@@ -410,7 +443,7 @@ text = "/"
 label_settings = SubResource("LabelSettings_mg4q0")
 
 [node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=868645753]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("15_7nbq1")
 expand_mode = 1
@@ -431,7 +464,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Time" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=736437607]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("16_exi56")
 expand_mode = 1
@@ -444,7 +477,7 @@ text = "/"
 label_settings = SubResource("LabelSettings_mg4q0")
 
 [node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=1359167953]
-custom_minimum_size = Vector2(50, 50)
+custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
 texture = ExtResource("15_7nbq1")
 expand_mode = 1
@@ -456,6 +489,24 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "1"
 label_settings = SubResource("LabelSettings_vm72l")
+
+[node name="Button Container" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=1227878201]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Button" type="Button" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Button Container" unique_id=1784359697]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_nnt18")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_exi56")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7t8sx")
+text = "$10"
 
 [node name="SpachingContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1334949451]
 layout_mode = 2
@@ -626,4 +677,4 @@ size_flags_vertical = 8
 
 [connection signal="on_customer_spawn" from="CustomerManager" to="UI/AdminPanel" method="_on_customer_manager_on_customer_spawn"]
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
-[connection signal="pressed" from="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/Button" to="UI/AdminPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Button Container/Button" to="UI/AdminPanel" method="_on_button_pressed"]

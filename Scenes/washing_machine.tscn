@@ -172,6 +172,7 @@ _data = {
 size = Vector2(500, 500)
 
 [node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("animation_player", "body")]
+z_index = 1
 scale = Vector2(0.22, 0.22)
 script = ExtResource("1_32040")
 animation_player = NodePath("AnimationPlayer")

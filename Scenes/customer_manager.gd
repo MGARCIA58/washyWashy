@@ -10,7 +10,7 @@ signal on_customer_spawn()
 @export var front_marker: Marker2D
 @export var waiting_marker: Marker2D
 @export var timer: Timer
-
+@export var limitCustomers = 20
 
 func _ready() -> void:
 		spawn_customer()
@@ -25,7 +25,7 @@ func spawn_customer() -> void:
 	customer.setAssets(assetData)
 	
 	#Get random quantity
-	var quantity: int = randi_range(1,5)
+	var quantity: int = randi_range(2,6)
 	customer.initCustomer(quantity)
 	
 	customer.position = spawn_marker.position
@@ -36,7 +36,7 @@ func spawn_customer() -> void:
 	
 func moveToLine(customer: Customer) -> void:
 	var index = GameManager.customersWaiting.find(customer)
-	var timeAnimation = 5
+	var timeAnimation = 1
 	match index:
 		0:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
@@ -46,7 +46,7 @@ func moveToLine(customer: Customer) -> void:
 			await customer.moveCharacter(front_marker.position, timeAnimation)
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-			await customer.moveCharacter(waiting_marker.position, timeAnimation-2)
+			await customer.moveCharacter(waiting_marker.position, timeAnimation)
 			customer.isWaitingWasher = true
 			GameManager.lookForWasher(customer)
 		1,2:
@@ -57,7 +57,7 @@ func moveToLine(customer: Customer) -> void:
 			await customer.moveCharacter(front_marker.position, timeAnimation)
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-			await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation-2)
+			await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation)
 			
 		3:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
@@ -68,7 +68,7 @@ func moveToLine(customer: Customer) -> void:
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 			
-		4,5,6,7,8:
+		4,5,6,7,8,_:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
 			
@@ -78,12 +78,12 @@ func moveToLine(customer: Customer) -> void:
 				to_position = Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40)
 			else:
 				to_position = Vector2(front_marker.position.x-(80*index-4),front_marker.position.y-(40*index-4))
-			await customer.moveCharacter(to_position, timeAnimation-2)
+			await customer.moveCharacter(to_position, timeAnimation)
 			
 			customer.change_state(GameManager.character_state.WAITING_DIRTY)
 			
 func _on_timer_timeout() -> void:
-	if GameManager.customersWaiting.size() < 9:
+	if GameManager.customersWaiting.size() < limitCustomers:
 		spawn_customer()
 	else:
 		timer.stop()
@@ -91,7 +91,7 @@ func _on_timer_timeout() -> void:
 func _on_move_line() -> void:
 	for customer in GameManager.customersWaiting:
 		var index = GameManager.customersWaiting.find(customer)
-		var timeAnimation = 3
+		var timeAnimation = 1
 		match index:
 			0:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
@@ -100,16 +100,16 @@ func _on_move_line() -> void:
 				GameManager.lookForWasher(customer)
 			1,2:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation-2)
+				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation)
 				
 			3:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY)
 				await customer.moveCharacter(front_marker.position, timeAnimation)	
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 				
-			4,5,6,7,8:	
+			4,5,6,7,8,_:	
 				customer.change_state(GameManager.character_state.WALKING_DIRTY)
-				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40), timeAnimation-2)
+				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40), timeAnimation)
 				customer.change_state(GameManager.character_state.WAITING_DIRTY)
-	if GameManager.customersWaiting.size() < 9:
+	if GameManager.customersWaiting.size() < limitCustomers:
 		spawn_customer()

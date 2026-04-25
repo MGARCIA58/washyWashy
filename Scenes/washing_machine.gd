@@ -13,7 +13,7 @@ class_name WashingMachine
 
 @export var coin_quantity: int = 0
 @export var time_quantity: int = 0
-@export var upgrade_coin_percentage: float = 1.58
+@export var upgrade_coin_percentage: float
 @export var upgrade_time_reduction: int = 1
 
 var quantity_laundry: int
@@ -33,31 +33,37 @@ func level_up() -> void:
 		0:
 			body.texture = wash_0
 		1:
-			coin_quantity = 3
-			time_quantity = 7
+			coin_quantity = 5
+			time_quantity = 8
 			body.texture = wash_1
 			body.scale *= 2
+			upgrade_coin_percentage = 1
 			GameManager.level_1_machines_quantity += 1
 			GameManager.availableWashingMachines.append(self)			
 			GameManager.my_washers += 1
 		2:
 			body.texture = wash_2
+			upgrade_coin_percentage = 1.95
 			GameManager.level_1_machines_quantity -= 1
 			GameManager.level_2_machines_quantity += 1
 		3:
 			body.texture = wash_3
+			upgrade_coin_percentage = 3.06
 			GameManager.level_2_machines_quantity -= 1
 			GameManager.level_3_machines_quantity += 1
 		4:
 			body.texture = wash_4
+			upgrade_coin_percentage = 5.36
 			GameManager.level_3_machines_quantity -= 1
 			GameManager.level_4_machines_quantity += 1
 		5:
 			body.texture = wash_5
+			upgrade_coin_percentage = 9.38
 			GameManager.level_4_machines_quantity -= 1
 			GameManager.level_5_machines_quantity += 1
 		6:
 			body.texture = wash_6
+			upgrade_coin_percentage = 16.41
 			GameManager.level_5_machines_quantity -= 1
 			GameManager.level_6_machines_quantity += 1
 	
@@ -71,11 +77,23 @@ func get_coin_time_when_level_up() -> Array[int]:
 	var local_wash_level = wash_level + 1
 	var local_coin_quantity = coin_quantity
 	var local_time_quantity = time_quantity
+	var local_upgrade_coin_percentage = upgrade_coin_percentage
 	match local_wash_level:
 		1:
-			local_coin_quantity = 3
-			local_time_quantity = 7
-	local_coin_quantity = ceil(local_coin_quantity * upgrade_coin_percentage)
+			local_coin_quantity = 5
+			local_time_quantity = 8
+			local_upgrade_coin_percentage = 1
+		2:
+			local_upgrade_coin_percentage = 1.95
+		3:
+			local_upgrade_coin_percentage = 3.06
+		4:
+			local_upgrade_coin_percentage = 5.36
+		5:
+			local_upgrade_coin_percentage = 9.38
+		6:
+			local_upgrade_coin_percentage = 16.41
+	local_coin_quantity = ceil(local_coin_quantity * local_upgrade_coin_percentage)
 	local_time_quantity -= upgrade_time_reduction
 	return [local_coin_quantity,local_time_quantity]
 	
@@ -94,6 +112,8 @@ func get_wash_texture_when_level_up() -> CompressedTexture2D:
 			return wash_4
 		5:
 			return wash_5
+		6:
+			return wash_6
 	return wash_0
 
 func reset_machine() -> void:
@@ -112,6 +132,8 @@ func wash() -> void:
 	animation_player.play(wash_string)
 	await get_tree().create_timer(timeToFinish).timeout
 	reset_machine()
+	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
+	await get_tree().create_timer(2.0).timeout
 	customerAssigned.change_state(GameManager.character_state.WALKING_CLEAN)
 	GameManager.assign_customer(self)
 	

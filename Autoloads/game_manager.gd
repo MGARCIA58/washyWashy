@@ -13,8 +13,7 @@ enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALK
 @export var level_5_machines_quantity: int = 0
 @export var level_6_machines_quantity: int = 0
 @export var my_washers: int = 0
-@export var upgrade_cost: float = 50
-@export var upgrade_percentage: float = 1.5
+@export var upgrade_percentage: float = 2.58
 @export var waiting_marker: Marker2D
 
 var customersWaiting : Array[Customer] = []
@@ -23,11 +22,27 @@ var current_coins = 0.0
 
 func _ready() -> void:
 	on_level_up.connect(_on_level_up)
+	current_coins = get_upgrade_cost(0)
 
 func get_upgrade_cost(washer_level) -> float:
 	if my_washers != 0:
 		washer_level += 1
-	return upgrade_cost * upgrade_percentage * my_washers * washer_level
+	var costoBase = 0
+	match washer_level:
+		1:
+			costoBase = 25
+		2:
+			costoBase = 113
+		3:
+			costoBase = 506
+		4:
+			costoBase = 2200
+		5:
+			costoBase = 10000
+		6:
+			costoBase = 46000
+	
+	return costoBase * upgrade_percentage * washer_level
 
 func format_coins(amount: float) -> String:
 	var suffixes: Array = ["","K","M","B","T","Q"]
@@ -38,7 +53,7 @@ func format_coins(amount: float) -> String:
 		display_amount /= 1000
 		index += 1
 		
-	return "$" + str(round_to_one_decimal(display_amount)) + suffixes[index]
+	return str(round_to_one_decimal(display_amount)) + suffixes[index]
 	
 func round_to_one_decimal(amount: float) -> float:
 	return floor(amount * 100)/100.0
