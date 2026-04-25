@@ -48,6 +48,7 @@ func moveToLine(customer: Customer) -> void:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 			await customer.moveCharacter(waiting_marker.position, timeAnimation-2)
 			customer.isWaitingWasher = true
+			GameManager.lookForWasher(customer)
 		1,2:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
@@ -72,7 +73,12 @@ func moveToLine(customer: Customer) -> void:
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
 			
 			customer.flipAsset()
-			await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40), timeAnimation-2)
+			var to_position: Vector2
+			if  index < GameManager.customersWaiting.size():
+				to_position = Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40)
+			else:
+				to_position = Vector2(front_marker.position.x-(80*index-4),front_marker.position.y-(40*index-4))
+			await customer.moveCharacter(to_position, timeAnimation-2)
 			
 			customer.change_state(GameManager.character_state.WAITING_DIRTY)
 			
@@ -91,6 +97,7 @@ func _on_move_line() -> void:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 				await customer.moveCharacter(waiting_marker.position, timeAnimation)
 				customer.isWaitingWasher = true
+				GameManager.lookForWasher(customer)
 			1,2:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation-2)
@@ -104,4 +111,5 @@ func _on_move_line() -> void:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY)
 				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-40), timeAnimation-2)
 				customer.change_state(GameManager.character_state.WAITING_DIRTY)
-	spawn_customer()
+	if GameManager.customersWaiting.size() < 9:
+		spawn_customer()

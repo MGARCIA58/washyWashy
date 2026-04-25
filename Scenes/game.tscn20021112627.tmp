@@ -142,12 +142,6 @@ position = Vector2(984, 347.99997)
 [node name="WashingMachine2" parent="." unique_id=410289551 instance=ExtResource("11_o5yvi")]
 position = Vector2(1375, 523)
 
-[node name="WashingMachine3" parent="." unique_id=893897098 instance=ExtResource("11_o5yvi")]
-position = Vector2(1255, 582)
-
-[node name="WashingMachine4" parent="." unique_id=1249994898 instance=ExtResource("11_o5yvi")]
-position = Vector2(812, 427)
-
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
 [node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_coins_label", "inspector_image", "level_container", "machine_stats_container", "upgrade_card", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]

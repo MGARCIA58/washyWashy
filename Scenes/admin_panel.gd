@@ -37,7 +37,7 @@ func _ready() -> void:
 	level_5_machines_quantity.text = str(GameManager.level_5_machines_quantity)
 	level_6_machines_quantity.text = str(GameManager.level_6_machines_quantity)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	current_coins_label.text = GameManager.format_coins(GameManager.current_coins)
 
 func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
@@ -75,4 +75,5 @@ func _on_customer_manager_on_customer_spawn(customersWaiting: Array[Customer]) -
 
 func _on_button_pressed() -> void:
 	if GameManager.current_coins >= GameManager.get_upgrade_cost(current_washer.wash_level):
+		GameManager.current_coins -= GameManager.get_upgrade_cost(current_washer.wash_level)
 		current_washer.level_up()

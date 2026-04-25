@@ -44,17 +44,20 @@ func round_to_one_decimal(amount: float) -> float:
 	return floor(amount * 100)/100.0
 
 func _on_level_up(washer: WashingMachine) -> void:
-	if !washer.isOccupied && customersWaiting.size() >= 1:
+	assign_customer(washer)
+
+func lookForWasher(customer: Customer) -> void:
+	for washer in availableWashingMachines:
 		assign_customer(washer)
 
 func assign_customer(washer: WashingMachine) -> void:
-	if customersWaiting[0].isWaitingWasher:
+	if customersWaiting[0].isWaitingWasher && !washer.isOccupied && customersWaiting.size() >= 1:
+		washer.isOccupied = true
 		var timeAnimation = 5
 		var customer = customersWaiting.pop_front()
 		on_move_line.emit()
 		customer.change_state(GameManager.character_state.WALKING_DIRTY)
 		await customer.moveCharacter(Vector2(washer.position.x-80,washer.position.y+5), timeAnimation)
-		washer.isOccupied = true
 		customer.isWaitingWasher = false
 		washer.customerAssigned = customer
 		washer.wash()

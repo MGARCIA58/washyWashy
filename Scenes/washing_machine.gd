@@ -106,13 +106,14 @@ func wash() -> void:
 	await get_tree().create_timer(2.0).timeout
 	
 	customerAssigned.change_state(GameManager.character_state.WAITING)
-	customerAssigned.animation_player.play("waiting")
+	customerAssigned.animation_player.play("Waiting")
 	var wash_string: String = "wash_%d" % wash_level
 	var timeToFinish = customerAssigned.quantity_laundry * time_quantity
 	animation_player.play(wash_string)
 	await get_tree().create_timer(timeToFinish).timeout
 	reset_machine()
 	customerAssigned.change_state(GameManager.character_state.WALKING_CLEAN)
+	GameManager.assign_customer(self)
 	
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
