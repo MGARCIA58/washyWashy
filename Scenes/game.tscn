@@ -10,10 +10,75 @@
 [ext_resource type="Resource" uid="uid://du85led25mbo0" path="res://Resources/c2.tres" id="7_o5yvi"]
 [ext_resource type="Resource" uid="uid://dh0la2n1eleh4" path="res://Resources/c3.tres" id="8_rku1e"]
 [ext_resource type="Resource" uid="uid://ckpxwn1v1kf8w" path="res://Resources/c4.tres" id="9_rfjv2"]
+[ext_resource type="PackedScene" uid="uid://bb8ut3y60a13o" path="res://Scenes/washing_machine.tscn" id="11_o5yvi"]
+[ext_resource type="Script" uid="uid://dj3qyw4tsoxcf" path="res://Scenes/admin_panel.gd" id="12_exi56"]
+[ext_resource type="Texture2D" uid="uid://ckf4yi7wfw8tk" path="res://Assets/Washers/wash0.png" id="12_nb51f"]
+[ext_resource type="FontFile" uid="uid://bl06gch0bh3e1" path="res://UI/Kenney Future.ttf" id="13_nnt18"]
+[ext_resource type="Texture2D" uid="uid://34kbjhghgvmh" path="res://Assets/Washers/wash1.png" id="14_ewbju"]
+[ext_resource type="Texture2D" uid="uid://cok1qx4o64hj6" path="res://UI/coin_gold.png" id="14_iivbl"]
+[ext_resource type="Texture2D" uid="uid://bpjnt0gemp7js" path="res://UI/15.png" id="15_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://dosogvd1qcygq" path="res://UI/best_price.png" id="15_85qyi"]
+[ext_resource type="Texture2D" uid="uid://cns12dld71oyc" path="res://UI/hourglass.png" id="16_exi56"]
+[ext_resource type="LabelSettings" uid="uid://che1jd5k3m7rg" path="res://LabelSettings/stats_settings.tres" id="16_nnt18"]
+[ext_resource type="Texture2D" uid="uid://df6rrwj2a6opi" path="res://UI/arrowUp.png" id="19_7nbq1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5yvi"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.6913568, 0.69135684, 0.6913566, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_iivbl"]
+font = ExtResource("13_nnt18")
+font_size = 24
+font_color = Color(0.10224319, 0.10224321, 0.10224321, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_7t8sx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mg4q0"]
+font = SubResource("SystemFont_7t8sx")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vm72l"]
+font = ExtResource("13_nnt18")
+font_size = 50
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nbq1"]
+bg_color = Color(0.8862745, 1, 1, 1)
+draw_center = false
+border_width_top = 5
+border_width_bottom = 5
+border_color = Color(0.7550743, 0.6477069, 0.13718772, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nbq1"]
+font = ExtResource("13_nnt18")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exi56"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.003921569, 0.4862745, 0.78431374, 1)
+corner_radius_top_left = 1000
+corner_radius_top_right = 1000
+corner_radius_bottom_right = 1000
+corner_radius_bottom_left = 1000
 
 [node name="Game" type="Node2D" unique_id=849719722]
 
 [node name="Background" type="Node2D" parent="." unique_id=964466233]
+position = Vector2(-138, 0)
 
 [node name="Background_Base" type="Sprite2D" parent="Background" unique_id=1174361863]
 position = Vector2(960, 551)
@@ -43,19 +108,462 @@ front_marker = NodePath("FrontMarker")
 waiting_marker = NodePath("WaitingMarker")
 
 [node name="SpawnMarker" type="Marker2D" parent="CustomerManager" unique_id=1007198091]
-position = Vector2(959, 225)
+position = Vector2(830, 225)
 
 [node name="CornerMarker" type="Marker2D" parent="CustomerManager" unique_id=560793298]
-position = Vector2(151, 533)
+position = Vector2(22, 533)
 
 [node name="FrontMarker" type="Marker2D" parent="CustomerManager" unique_id=1144963024]
-position = Vector2(572, 806)
+position = Vector2(443, 806)
 
 [node name="WaitingMarker" type="Marker2D" parent="CustomerManager" unique_id=1930833020]
-position = Vector2(738, 715)
+position = Vector2(609, 715)
 
 [node name="Timer" type="Timer" parent="CustomerManager" unique_id=1351809370]
 wait_time = 2.0
 autostart = true
+
+[node name="WashingMachine" parent="." unique_id=1550306222 instance=ExtResource("11_o5yvi")]
+position = Vector2(971, 347)
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
+
+[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "upgrade_coin_quantity", "upgrate_time_quantity", "total_machines_quantity_label", "level_1_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]
+offset_left = 1655.0
+offset_top = -1.0
+offset_right = 1915.0
+offset_bottom = 1079.0
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5yvi")
+script = ExtResource("12_exi56")
+current_wash_machine_texture = NodePath("VBoxContainer/InspectorImage/CurrentWashMachineTexture")
+level_label = NodePath("VBoxContainer/LevelContainer/LevelLabel")
+coin_quantity = NodePath("VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinQuantity")
+time_quantity = NodePath("VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimeQuantity")
+upgrade_coin_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/UpgradeCoinQuantity")
+upgrate_time_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/UpgrateTimeQuantity")
+total_machines_quantity_label = NodePath("VBoxContainer/StatsContainer/MyMachinesContainer/TotalMachinesQuantityLabel")
+level_1_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level1MachinesContainer/Level1MachinesQuantity")
+level_3_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level3MachinesContainer/Level3MachinesQuantity")
+level_4_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level4MachinesContainer/Level4MachinesQuantity")
+level_5_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level5MachinesContainer/Level5MachinesQuantity")
+level_6_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level6MachinesContainer/Level6MachinesQuantity")
+machine_spaces_quantity_label = NodePath("VBoxContainer/StatsContainer/MachinesSpacesContainer/MachineSpacesQuantityLabel")
+customers_waiting_quantity_label = NodePath("VBoxContainer/StatsContainer/CustomersAwaitingContainer/CustomersWaitingQuantityLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/AdminPanel" unique_id=301607592]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -526.5
+offset_right = 125.0
+offset_bottom = 526.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LogoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1532052511]
+custom_minimum_size = Vector2(240, 50)
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/LogoContainer" unique_id=1655429796]
+layout_mode = 2
+
+[node name="InspectorImage" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1844920662]
+custom_minimum_size = Vector2(240, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CurrentWashMachineTexture" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/InspectorImage" unique_id=1672739207]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("12_nb51f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1801443356]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="LevelLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/LevelContainer" unique_id=841022549]
+unique_name_in_owner = true
+layout_mode = 2
+text = "LEVEL 0"
+label_settings = SubResource("LabelSettings_iivbl")
+
+[node name="MachineStatsContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1591589907]
+custom_minimum_size = Vector2(240, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CoinsPerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer" unique_id=1247199235]
+custom_minimum_size = Vector2(235, 50)
+layout_mode = 2
+
+[node name="CoinsPerClothInfoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer" unique_id=649669287]
+layout_mode = 2
+
+[node name="Coin" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=2093460393]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("14_iivbl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slash" type="Label" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=313996382]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "/"
+label_settings = SubResource("LabelSettings_mg4q0")
+
+[node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=148565763]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_7nbq1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CoinQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/CoinsPerClothContainer" unique_id=423088703]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_vm72l")
+
+[node name="TimePerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer" unique_id=470509292]
+custom_minimum_size = Vector2(235, 50)
+layout_mode = 2
+
+[node name="TimePerClothInfoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer" unique_id=2141061482]
+layout_mode = 2
+
+[node name="Time" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=1675402235]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("16_exi56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slash" type="Label" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=1192504269]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "/"
+label_settings = SubResource("LabelSettings_mg4q0")
+
+[node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=138471390]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_7nbq1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TimeQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/MachineStatsContainer/TimePerClothContainer" unique_id=1882544122]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_vm72l")
+
+[node name="UpgradeCard" type="PanelContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1054769101]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_7nbq1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard" unique_id=292280168]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=2060247086]
+custom_minimum_size = Vector2(230, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/HBoxContainer" unique_id=2042227679]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "UPGRADE"
+label_settings = SubResource("LabelSettings_7nbq1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Head Card" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=1972112864]
+custom_minimum_size = Vector2(235, 100)
+layout_mode = 2
+
+[node name="WashMachineAsset" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=918700598]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+texture = ExtResource("14_ewbju")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UpgradeTags" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=1928634839]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="BestPrice" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/UpgradeTags" unique_id=521711931]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_85qyi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Upgrade" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/UpgradeTags" unique_id=896935649]
+modulate = Color(0.2954278, 0.68313724, 0.9988114, 1)
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("19_7nbq1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=1784359697]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_nnt18")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxFlat_exi56")
+text = "$10"
+
+[node name="CoinsPerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=1009713126]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="CoinsPerClothInfoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer" unique_id=2095205429]
+layout_mode = 2
+
+[node name="Coin" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=479804364]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("14_iivbl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slash" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=797075991]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "/"
+label_settings = SubResource("LabelSettings_mg4q0")
+
+[node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/CoinsPerClothInfoContainer" unique_id=868645753]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_7nbq1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UpgradeCoinQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer" unique_id=261945344]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_vm72l")
+
+[node name="TimePerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=229912400]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="TimePerClothInfoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer" unique_id=655037820]
+layout_mode = 2
+
+[node name="Time" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=736437607]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("16_exi56")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Slash" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=272808910]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "/"
+label_settings = SubResource("LabelSettings_mg4q0")
+
+[node name="Cloth" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/TimePerClothInfoContainer" unique_id=1359167953]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("15_7nbq1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="UpgrateTimeQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer" unique_id=1891470878]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = SubResource("LabelSettings_vm72l")
+
+[node name="SpachingContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1334949451]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StatsContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1954295012]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MyMachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=1312560738]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="MyMachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/MyMachinesContainer" unique_id=1985228532]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "My Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="TotalMachinesQuantityLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/MyMachinesContainer" unique_id=1420235807]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level1MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=110475874]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level1MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level1MachinesContainer" unique_id=1805538482]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 1 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level1MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level1MachinesContainer" unique_id=1697334086]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level2MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=997051787]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level2MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level2MachinesContainer" unique_id=2071808169]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 2 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level2MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level2MachinesContainer" unique_id=1506928331]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level3MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=205444277]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level3MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level3MachinesContainer" unique_id=424426250]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 3 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level3MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level3MachinesContainer" unique_id=1528452331]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level4MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=32301525]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level4MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level4MachinesContainer" unique_id=660915399]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 4 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level4MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level4MachinesContainer" unique_id=183037152]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level5MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=1914788201]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level5MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level5MachinesContainer" unique_id=1145956476]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 5 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level5MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level5MachinesContainer" unique_id=1164060250]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level6MachinesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=640185579]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="Level6MachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level6MachinesContainer" unique_id=548999321]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Lvl 6 Machines:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="Level6MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level6MachinesContainer" unique_id=1352136469]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "1"
+label_settings = ExtResource("16_nnt18")
+
+[node name="MachinesSpacesContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=1725793116]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="AvailableMMachinesLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/MachinesSpacesContainer" unique_id=1055617256]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Machines Spaces:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="MachineSpacesQuantityLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/MachinesSpacesContainer" unique_id=1436673453]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "5"
+label_settings = ExtResource("16_nnt18")
+
+[node name="CustomersAwaitingContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/StatsContainer" unique_id=511776627]
+custom_minimum_size = Vector2(240, 25)
+layout_mode = 2
+
+[node name="CustomersWaitingsLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/CustomersAwaitingContainer" unique_id=955539650]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Customers Waiting:"
+label_settings = ExtResource("16_nnt18")
+
+[node name="CustomersWaitingQuantityLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/CustomersAwaitingContainer" unique_id=358447131]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 10
+text = "5"
+label_settings = ExtResource("16_nnt18")
+
+[node name="FooterContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=903221042]
+custom_minimum_size = Vector2(240, 100)
+layout_mode = 2
+size_flags_vertical = 8
 
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]

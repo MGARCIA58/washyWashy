@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://che1jd5k3m7rg"]
+
+[ext_resource type="FontFile" uid="uid://bl06gch0bh3e1" path="res://UI/Kenney Future.ttf" id="1_pmtep"]
+
+[resource]
+font = ExtResource("1_pmtep")
+font_color = Color(0, 0, 0, 1)
