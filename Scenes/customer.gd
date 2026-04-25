@@ -11,6 +11,7 @@ var walking_dirty: Texture2D
 var walking_dirty_back: Texture2D
 var loading_laundry: Texture2D
 var finalPosition: Vector2
+var isWaitingWasher = false
 
 func initCustomer(quantity: int) -> void:
 	quantity_laundry = quantity

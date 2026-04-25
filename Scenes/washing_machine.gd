@@ -19,6 +19,8 @@ class_name WashingMachine
 var quantity_laundry: int
 var washing_machine: Texture2D
 var wash_level: int = 0
+var isOccupied = false
+var customerAssigned: Customer
 
 func washMachine_init() -> void:
 	body.texture = wash_0
@@ -36,37 +38,34 @@ func level_up() -> void:
 			body.texture = wash_1
 			body.scale *= 2
 			GameManager.level_1_machines_quantity += 1
+			GameManager.availableWashingMachines.append(self)			
 			GameManager.my_washers += 1
 		2:
 			body.texture = wash_2
 			GameManager.level_1_machines_quantity -= 1
 			GameManager.level_2_machines_quantity += 1
-			GameManager.my_washers += 1
 		3:
 			body.texture = wash_3
 			GameManager.level_2_machines_quantity -= 1
 			GameManager.level_3_machines_quantity += 1
-			GameManager.my_washers += 1
 		4:
 			body.texture = wash_4
 			GameManager.level_3_machines_quantity -= 1
 			GameManager.level_4_machines_quantity += 1
-			GameManager.my_washers += 1
 		5:
 			body.texture = wash_5
 			GameManager.level_4_machines_quantity -= 1
 			GameManager.level_5_machines_quantity += 1
-			GameManager.my_washers += 1
 		6:
 			body.texture = wash_6
 			GameManager.level_5_machines_quantity -= 1
 			GameManager.level_6_machines_quantity += 1
-			GameManager.my_washers += 1
 	
 	coin_quantity = ceil(coin_quantity * upgrade_coin_percentage)
 	time_quantity -= upgrade_time_reduction
 	GameManager.on_washer_selected.emit(self)
-	GameManager.on_level_up.emit()
+	GameManager.on_level_up.emit(self)
+	
 
 func get_coin_time_when_level_up() -> Array[int]:
 	var local_wash_level = wash_level + 1
@@ -96,15 +95,26 @@ func get_wash_texture_when_level_up() -> CompressedTexture2D:
 		5:
 			return wash_5
 	return wash_0
-			
-func load_laundry(quantity: int) -> void:
-	quantity_laundry = quantity
-	
+
+func reset_machine() -> void:
+		isOccupied = false
+		animation_player.play("RESET")
 
 func wash() -> void:
-	var wash_string: String = 'wash_%i' % wash_level
+	GameManager.current_coins += customerAssigned.quantity_laundry * coin_quantity
+	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
+	await get_tree().create_timer(2.0).timeout
+	
+	customerAssigned.change_state(GameManager.character_state.WAITING)
+	customerAssigned.animation_player.play("waiting")
+	var wash_string: String = "wash_%d" % wash_level
+	var timeToFinish = customerAssigned.quantity_laundry * time_quantity
 	animation_player.play(wash_string)
+	await get_tree().create_timer(timeToFinish).timeout
+	reset_machine()
+	customerAssigned.change_state(GameManager.character_state.WALKING_CLEAN)
+	
 
-func _on_area_2d_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		GameManager.on_washer_selected.emit(self)

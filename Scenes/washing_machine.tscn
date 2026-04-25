@@ -171,9 +171,10 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvwyg"]
 size = Vector2(500, 500)
 
-[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("body")]
+[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("animation_player", "body")]
 scale = Vector2(0.22, 0.22)
 script = ExtResource("1_32040")
+animation_player = NodePath("AnimationPlayer")
 wash_0 = ExtResource("1_1tly0")
 wash_1 = ExtResource("3_jvwyg")
 wash_2 = ExtResource("4_pk6di")

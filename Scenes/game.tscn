@@ -34,6 +34,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="LabelSettings" id="LabelSettings_exi56"]
+font = ExtResource("13_nnt18")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_iivbl"]
 font = ExtResource("13_nnt18")
 font_size = 24
@@ -105,7 +110,7 @@ position = Vector2(714.99994, 691.99994)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("3_wowpa")
 
-[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker")]
+[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer")]
 script = ExtResource("4_3dryh")
 customerScene = ExtResource("4_wowpa")
 customerBodies = Array[ExtResource("5_h4fw4")]([ExtResource("6_ldgsr"), ExtResource("7_o5yvi"), ExtResource("8_rku1e"), ExtResource("9_rfjv2")])
@@ -113,6 +118,7 @@ spawn_marker = NodePath("SpawnMarker")
 corner_marker = NodePath("CornerMarker")
 front_marker = NodePath("FrontMarker")
 waiting_marker = NodePath("WaitingMarker")
+timer = NodePath("Timer")
 
 [node name="SpawnMarker" type="Marker2D" parent="CustomerManager" unique_id=1007198091]
 position = Vector2(830, 225)
@@ -135,7 +141,7 @@ position = Vector2(984, 347.99997)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
-[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("inspector_image", "level_container", "machine_stats_container", "upgrade_card", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]
+[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_coins_label", "inspector_image", "level_container", "machine_stats_container", "upgrade_card", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]
 offset_left = 1655.0
 offset_top = -1.0
 offset_right = 1915.0
@@ -143,6 +149,7 @@ offset_bottom = 1079.0
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_o5yvi")
 script = ExtResource("12_exi56")
+current_coins_label = NodePath("VBoxContainer/CoinsContainer/CurrentCoinsLabel")
 inspector_image = NodePath("VBoxContainer/InspectorImage")
 level_container = NodePath("VBoxContainer/LevelContainer")
 machine_stats_container = NodePath("VBoxContainer/MachineStatsContainer")
@@ -179,12 +186,27 @@ offset_bottom = 526.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LogoContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1532052511]
+[node name="CoinsContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1532052511]
 custom_minimum_size = Vector2(240, 50)
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 3
 
-[node name="Logo" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/LogoContainer" unique_id=1655429796]
+[node name="Logo" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/CoinsContainer" unique_id=1655429796]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 6
+texture = ExtResource("14_iivbl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurrentCoinsLabel" type="Label" parent="UI/AdminPanel/VBoxContainer/CoinsContainer" unique_id=393404020]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+text = "0"
+label_settings = SubResource("LabelSettings_exi56")
 
 [node name="InspectorImage" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1844920662]
 unique_name_in_owner = true
