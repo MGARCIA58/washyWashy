@@ -1,6 +1,8 @@
 extends Node
 class_name CustomerManager
 
+signal on_customer_spawn()
+
 @export var customerScene: PackedScene
 @export var customerBodies: Array[CustomerBodies]
 @export var spawn_marker: Marker2D
@@ -29,7 +31,7 @@ func spawn_customer() -> void:
 	
 	customersWaiting.append(customer)
 	moveToLine(customer)
-	
+	on_customer_spawn.emit(customersWaiting)
 	
 func moveToLine(customer: Customer) -> void:
 	var index = customersWaiting.find(customer)

@@ -75,6 +75,13 @@ corner_radius_top_right = 1000
 corner_radius_bottom_right = 1000
 corner_radius_bottom_left = 1000
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t8sx"]
+bg_color = Color(0.7921569, 0.7921569, 0.7921569, 0.3764706)
+corner_radius_top_left = 1000
+corner_radius_top_right = 1000
+corner_radius_bottom_right = 1000
+corner_radius_bottom_left = 1000
+
 [node name="Game" type="Node2D" unique_id=849719722]
 
 [node name="Background" type="Node2D" parent="." unique_id=964466233]
@@ -124,11 +131,11 @@ wait_time = 2.0
 autostart = true
 
 [node name="WashingMachine" parent="." unique_id=1550306222 instance=ExtResource("11_o5yvi")]
-position = Vector2(971, 347)
+position = Vector2(984, 347.99997)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
-[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "upgrade_coin_quantity", "upgrate_time_quantity", "total_machines_quantity_label", "level_1_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]
+[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("inspector_image", "level_container", "machine_stats_container", "upgrade_card", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label")]
 offset_left = 1655.0
 offset_top = -1.0
 offset_right = 1915.0
@@ -136,14 +143,21 @@ offset_bottom = 1079.0
 size_flags_horizontal = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_o5yvi")
 script = ExtResource("12_exi56")
+inspector_image = NodePath("VBoxContainer/InspectorImage")
+level_container = NodePath("VBoxContainer/LevelContainer")
+machine_stats_container = NodePath("VBoxContainer/MachineStatsContainer")
+upgrade_card = NodePath("VBoxContainer/UpgradeCard")
 current_wash_machine_texture = NodePath("VBoxContainer/InspectorImage/CurrentWashMachineTexture")
 level_label = NodePath("VBoxContainer/LevelContainer/LevelLabel")
 coin_quantity = NodePath("VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinQuantity")
 time_quantity = NodePath("VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimeQuantity")
+wash_machine_asset = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Head Card/WashMachineAsset")
 upgrade_coin_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/UpgradeCoinQuantity")
-upgrate_time_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/UpgrateTimeQuantity")
+upgrade_time_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/UpgradeTimeQuantity")
+button = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Head Card/Button")
 total_machines_quantity_label = NodePath("VBoxContainer/StatsContainer/MyMachinesContainer/TotalMachinesQuantityLabel")
 level_1_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level1MachinesContainer/Level1MachinesQuantity")
+level_2_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level2MachinesContainer/Level2MachinesQuantity")
 level_3_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level3MachinesContainer/Level3MachinesQuantity")
 level_4_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level4MachinesContainer/Level4MachinesQuantity")
 level_5_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level5MachinesContainer/Level5MachinesQuantity")
@@ -173,6 +187,8 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="InspectorImage" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1844920662]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(240, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -187,6 +203,8 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="LevelContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1801443356]
+unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -197,6 +215,8 @@ text = "LEVEL 0"
 label_settings = SubResource("LabelSettings_iivbl")
 
 [node name="MachineStatsContainer" type="VBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1591589907]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(240, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -270,6 +290,8 @@ text = "1"
 label_settings = SubResource("LabelSettings_vm72l")
 
 [node name="UpgradeCard" type="PanelContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=1054769101]
+unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -298,6 +320,7 @@ custom_minimum_size = Vector2(235, 100)
 layout_mode = 2
 
 [node name="WashMachineAsset" type="TextureRect" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=918700598]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 texture = ExtResource("14_ewbju")
@@ -324,12 +347,15 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Button" type="Button" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card" unique_id=1784359697]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("13_nnt18")
-theme_override_font_sizes/font_size = 27
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_exi56")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7t8sx")
 text = "$10"
 
 [node name="CoinsPerClothContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer" unique_id=1009713126]
@@ -393,7 +419,7 @@ texture = ExtResource("15_7nbq1")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="UpgrateTimeQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer" unique_id=1891470878]
+[node name="UpgradeTimeQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer" unique_id=1891470878]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
@@ -454,6 +480,7 @@ text = "Lvl 2 Machines:"
 label_settings = ExtResource("16_nnt18")
 
 [node name="Level2MachinesQuantity" type="Label" parent="UI/AdminPanel/VBoxContainer/StatsContainer/Level2MachinesContainer" unique_id=1506928331]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 10
 text = "1"
@@ -566,4 +593,6 @@ custom_minimum_size = Vector2(240, 100)
 layout_mode = 2
 size_flags_vertical = 8
 
+[connection signal="on_customer_spawn" from="CustomerManager" to="UI/AdminPanel" method="_on_customer_manager_on_customer_spawn"]
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Head Card/Button" to="UI/AdminPanel" method="_on_button_pressed"]

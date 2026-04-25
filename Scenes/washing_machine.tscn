@@ -21,7 +21,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(2, 2)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1.1, 1.1)]
+"values": [Vector2(2, 2), Vector2(2.1, 2.1)]
 }
 
 [sub_resource type="Animation" id="Animation_byjw2"]
@@ -168,10 +168,12 @@ _data = {
 &"wash_6": SubResource("Animation_5fsyt")
 }
 
-[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("animation_player", "body")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvwyg"]
+size = Vector2(500, 500)
+
+[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("body")]
 scale = Vector2(0.22, 0.22)
 script = ExtResource("1_32040")
-animation_player = NodePath("")
 wash_0 = ExtResource("1_1tly0")
 wash_1 = ExtResource("3_jvwyg")
 wash_2 = ExtResource("4_pk6di")
@@ -183,8 +185,17 @@ body = NodePath("Body")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1581394186]
 rotation = 0.108210415
+scale = Vector2(2, 2)
 texture = ExtResource("1_1tly0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=567186743]
 libraries/ = SubResource("AnimationLibrary_pk6di")
 autoplay = &"idle"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=446288622]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=417162852]
+position = Vector2(-4.5454545, 4.5454545)
+shape = SubResource("RectangleShape2D_jvwyg")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
