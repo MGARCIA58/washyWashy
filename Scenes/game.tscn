@@ -142,52 +142,52 @@ wait_time = 2.0
 autostart = true
 
 [node name="WashingMachine" parent="." unique_id=1550306222 instance=ExtResource("11_o5yvi")]
-position = Vector2(984, 347.99997)
+position = Vector2(962, 333)
 
 [node name="WashingMachine2" parent="." unique_id=410289551 instance=ExtResource("11_o5yvi")]
-position = Vector2(1156, 417)
+position = Vector2(1140, 413)
 
 [node name="WashingMachine3" parent="." unique_id=893897098 instance=ExtResource("11_o5yvi")]
-position = Vector2(1321, 493)
+position = Vector2(1307, 489)
 
 [node name="WashingMachine4" parent="." unique_id=1249994898 instance=ExtResource("11_o5yvi")]
 position = Vector2(1490, 572)
 
 [node name="WashingMachine5" parent="." unique_id=105391307 instance=ExtResource("11_o5yvi")]
-position = Vector2(862, 407)
+position = Vector2(808, 401.00003)
 
 [node name="WashingMachine6" parent="." unique_id=1799537458 instance=ExtResource("11_o5yvi")]
-position = Vector2(1034, 476.99994)
+position = Vector2(997, 487)
 
 [node name="WashingMachine7" parent="." unique_id=1389973262 instance=ExtResource("11_o5yvi")]
-position = Vector2(1197, 555)
+position = Vector2(1167, 572.99994)
 
 [node name="WashingMachine8" parent="." unique_id=1151756827 instance=ExtResource("11_o5yvi")]
-position = Vector2(1363, 628)
+position = Vector2(1356, 654)
 
 [node name="WashingMachine9" parent="." unique_id=1822446458 instance=ExtResource("11_o5yvi")]
-position = Vector2(736.99994, 467.00003)
+position = Vector2(647, 469.00003)
 
 [node name="WashingMachine10" parent="." unique_id=1078541086 instance=ExtResource("11_o5yvi")]
-position = Vector2(902, 537)
+position = Vector2(843, 570)
 
 [node name="WashingMachine11" parent="." unique_id=249831881 instance=ExtResource("11_o5yvi")]
-position = Vector2(1068, 610)
+position = Vector2(1016, 652)
 
 [node name="WashingMachine12" parent="." unique_id=1582554301 instance=ExtResource("11_o5yvi")]
-position = Vector2(1237, 689)
+position = Vector2(1210, 738)
 
 [node name="WashingMachine13" parent="." unique_id=1128182561 instance=ExtResource("11_o5yvi")]
-position = Vector2(611, 531)
+position = Vector2(491, 551)
 
 [node name="WashingMachine14" parent="." unique_id=1483091154 instance=ExtResource("11_o5yvi")]
-position = Vector2(770, 597)
+position = Vector2(674, 643)
 
 [node name="WashingMachine15" parent="." unique_id=843062483 instance=ExtResource("11_o5yvi")]
-position = Vector2(937, 669.99994)
+position = Vector2(850, 736)
 
 [node name="WashingMachine16" parent="." unique_id=1310113461 instance=ExtResource("11_o5yvi")]
-position = Vector2(1105, 753)
+position = Vector2(1070, 826)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 

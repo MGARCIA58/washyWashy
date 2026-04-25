@@ -72,7 +72,7 @@ func assign_customer(washer: WashingMachine) -> void:
 		var customer = customersWaiting.pop_front()
 		on_move_line.emit()
 		customer.change_state(GameManager.character_state.WALKING_DIRTY)
-		await customer.moveCharacter(Vector2(washer.position.x-80,washer.position.y+5), timeAnimation)
+		await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		customer.isWaitingWasher = false
 		washer.customerAssigned = customer
 		washer.wash()
