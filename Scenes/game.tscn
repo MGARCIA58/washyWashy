@@ -129,64 +129,80 @@ timer = NodePath("Timer")
 position = Vector2(-229, 291)
 
 [node name="CornerMarker" type="Marker2D" parent="CustomerManager" unique_id=560793298]
-position = Vector2(22, 533)
+position = Vector2(-47, 561)
 
 [node name="FrontMarker" type="Marker2D" parent="CustomerManager" unique_id=1144963024]
-position = Vector2(443, 806)
+position = Vector2(430, 846)
 
 [node name="WaitingMarker" type="Marker2D" parent="CustomerManager" unique_id=1930833020]
-position = Vector2(609, 715)
+position = Vector2(579, 742)
 
 [node name="Timer" type="Timer" parent="CustomerManager" unique_id=1351809370]
 wait_time = 2.0
 autostart = true
 
 [node name="WashingMachine" parent="." unique_id=1550306222 instance=ExtResource("11_o5yvi")]
-position = Vector2(962, 333)
+z_index = 1
+position = Vector2(924.99994, 325)
 
 [node name="WashingMachine2" parent="." unique_id=410289551 instance=ExtResource("11_o5yvi")]
-position = Vector2(1140, 413)
+z_index = 1
+position = Vector2(1105, 394)
 
 [node name="WashingMachine3" parent="." unique_id=893897098 instance=ExtResource("11_o5yvi")]
-position = Vector2(1307, 489)
+z_index = 1
+position = Vector2(1290, 478)
 
 [node name="WashingMachine4" parent="." unique_id=1249994898 instance=ExtResource("11_o5yvi")]
-position = Vector2(1490, 572)
+z_index = 1
+position = Vector2(1498, 569)
 
 [node name="WashingMachine5" parent="." unique_id=105391307 instance=ExtResource("11_o5yvi")]
-position = Vector2(808, 401.00003)
+z_index = 1
+position = Vector2(772, 392.00003)
 
 [node name="WashingMachine6" parent="." unique_id=1799537458 instance=ExtResource("11_o5yvi")]
-position = Vector2(997, 487)
+z_index = 1
+position = Vector2(955, 468)
 
 [node name="WashingMachine7" parent="." unique_id=1389973262 instance=ExtResource("11_o5yvi")]
-position = Vector2(1167, 572.99994)
+z_index = 1
+position = Vector2(1142, 561.99994)
 
 [node name="WashingMachine8" parent="." unique_id=1151756827 instance=ExtResource("11_o5yvi")]
+z_index = 1
 position = Vector2(1356, 654)
 
 [node name="WashingMachine9" parent="." unique_id=1822446458 instance=ExtResource("11_o5yvi")]
-position = Vector2(647, 469.00003)
+z_index = 1
+position = Vector2(611, 460.00003)
 
 [node name="WashingMachine10" parent="." unique_id=1078541086 instance=ExtResource("11_o5yvi")]
-position = Vector2(843, 570)
+z_index = 1
+position = Vector2(801, 551)
 
 [node name="WashingMachine11" parent="." unique_id=249831881 instance=ExtResource("11_o5yvi")]
-position = Vector2(1016, 652)
+z_index = 1
+position = Vector2(991, 641)
 
 [node name="WashingMachine12" parent="." unique_id=1582554301 instance=ExtResource("11_o5yvi")]
+z_index = 1
 position = Vector2(1210, 738)
 
 [node name="WashingMachine13" parent="." unique_id=1128182561 instance=ExtResource("11_o5yvi")]
-position = Vector2(491, 551)
+z_index = 1
+position = Vector2(455, 542)
 
 [node name="WashingMachine14" parent="." unique_id=1483091154 instance=ExtResource("11_o5yvi")]
-position = Vector2(674, 643)
+z_index = 1
+position = Vector2(632, 624)
 
 [node name="WashingMachine15" parent="." unique_id=843062483 instance=ExtResource("11_o5yvi")]
-position = Vector2(850, 736)
+z_index = 1
+position = Vector2(825, 725)
 
 [node name="WashingMachine16" parent="." unique_id=1310113461 instance=ExtResource("11_o5yvi")]
+z_index = 1
 position = Vector2(1070, 826)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
