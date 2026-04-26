@@ -3,6 +3,7 @@ extends Node
 signal on_washer_selected(washer: WashingMachine)
 signal on_level_up(washer: WashingMachine)
 signal on_move_line()
+signal on_moveCustomerToWashingMachine()
 
 enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALKING_DIRTY_BACK, LOADING_LAUNDRY}
 
@@ -14,7 +15,9 @@ enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALK
 @export var level_6_machines_quantity: int = 0
 @export var my_washers: int = 0
 @export var upgrade_percentage: float = 2.58
-@export var waiting_marker: Marker2D
+@onready var lane_a: Marker2D
+@onready var lane_b: Marker2D
+@onready var lane_c: Marker2D
 
 var customersWaiting : Array[Customer] = []
 var availableWashingMachines: Array[WashingMachine]
@@ -23,6 +26,8 @@ var current_coins = 0.0
 func _ready() -> void:
 	on_level_up.connect(_on_level_up)
 	current_coins = get_upgrade_cost(0)
+	
+	
 
 func get_upgrade_cost(washer_level) -> float:
 	if my_washers != 0:
@@ -68,11 +73,10 @@ func lookForWasher(customer: Customer) -> void:
 func assign_customer(washer: WashingMachine) -> void:
 	if customersWaiting[0].isWaitingWasher && !washer.isOccupied && customersWaiting.size() >= 1:
 		washer.isOccupied = true
-		var timeAnimation = 5
 		var customer = customersWaiting.pop_front()
 		on_move_line.emit()
-		customer.change_state(GameManager.character_state.WALKING_DIRTY)
-		await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
-		customer.isWaitingWasher = false
-		washer.customerAssigned = customer
-		washer.wash()
+		on_moveCustomerToWashingMachine.emit(washer,customer)
+
+	
+	#await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+	

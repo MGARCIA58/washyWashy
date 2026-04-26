@@ -11,10 +11,19 @@ signal on_customer_spawn()
 @export var waiting_marker: Marker2D
 @export var timer: Timer
 @export var limitCustomers = 20
+@export var lane_a: Marker2D
+@export var lane_c: Marker2D
+@export var laneAMachines: Array[WashingMachine]
+@export var laneBMachines: Array[WashingMachine]
+@export var laneCMachines: Array[WashingMachine]
 
 func _ready() -> void:
-		spawn_customer()
-		GameManager.on_move_line.connect(_on_move_line)
+	GameManager.lane_a = lane_a
+	GameManager.lane_b = waiting_marker
+	GameManager.lane_c = lane_c
+	spawn_customer()
+	GameManager.on_move_line.connect(_on_move_line)
+	GameManager.on_moveCustomerToWashingMachine.connect(_on_moveCustomerToWashingMachine)
 
 func spawn_customer() -> void:
 	var customer: Customer = customerScene.instantiate()
@@ -113,3 +122,33 @@ func _on_move_line() -> void:
 				customer.change_state(GameManager.character_state.WAITING_DIRTY)
 	if GameManager.customersWaiting.size() < limitCustomers:
 		spawn_customer()
+
+
+func _on_moveCustomerToWashingMachine(washer: WashingMachine, customer: Customer) -> void:
+	var timeAnimation = 1
+	var laneChose: String
+	if laneAMachines.find(washer) >= 0:
+		laneChose = 'A'
+	if laneBMachines.find(washer) >= 0:
+		laneChose = 'B'
+	if laneCMachines.find(washer) >= 0:
+		laneChose = 'C'
+	match laneChose:
+		'A':
+			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			customer.flipAsset()
+			await customer.moveCharacter(lane_a.position, timeAnimation)
+			customer.flipAsset()
+			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+		'B':
+			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+		'C':
+			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			await customer.moveCharacter(lane_c.position, timeAnimation)
+			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+	
+	customer.isWaitingWasher = false
+	washer.customerAssigned = customer
+	washer.wash()
+	

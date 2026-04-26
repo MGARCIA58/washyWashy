@@ -103,7 +103,6 @@ scale = Vector2(1.0756836, 1.0756836)
 texture = ExtResource("1_wrm1d")
 
 [node name="Background_Wall" type="Sprite2D" parent="Background" unique_id=835025374]
-visible = false
 position = Vector2(685, 315)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("2_3dryh")
@@ -115,7 +114,7 @@ position = Vector2(714.99994, 691.99994)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("3_wowpa")
 
-[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer")]
+[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_c", "laneAMachines", "laneBMachines", "laneCMachines")]
 script = ExtResource("4_3dryh")
 customerScene = ExtResource("4_wowpa")
 customerBodies = Array[ExtResource("5_h4fw4")]([ExtResource("6_ldgsr"), ExtResource("7_o5yvi"), ExtResource("8_rku1e"), ExtResource("9_rfjv2")])
@@ -124,6 +123,17 @@ corner_marker = NodePath("CornerMarker")
 front_marker = NodePath("FrontMarker")
 waiting_marker = NodePath("WaitingMarker")
 timer = NodePath("Timer")
+lane_a = NodePath("LaneA")
+lane_c = NodePath("LaneC")
+laneAMachines = [NodePath("../WashingMachine"), NodePath("../WashingMachine5"), NodePath("../WashingMachine9"), NodePath("../WashingMachine13")]
+laneBMachines = [NodePath("../WashingMachine2"), NodePath("../WashingMachine3"), NodePath("../WashingMachine6"), NodePath("../WashingMachine7"), NodePath("../WashingMachine10"), NodePath("../WashingMachine11"), NodePath("../WashingMachine14"), NodePath("../WashingMachine15")]
+laneCMachines = [NodePath("../WashingMachine4"), NodePath("../WashingMachine8"), NodePath("../WashingMachine12"), NodePath("../WashingMachine16")]
+
+[node name="LaneA" type="Marker2D" parent="CustomerManager" unique_id=794239996]
+position = Vector2(489, 623)
+
+[node name="LaneC" type="Marker2D" parent="CustomerManager" unique_id=1410817113]
+position = Vector2(863, 792)
 
 [node name="SpawnMarker" type="Marker2D" parent="CustomerManager" unique_id=1007198091]
 position = Vector2(-229, 291)
@@ -135,7 +145,7 @@ position = Vector2(-47, 561)
 position = Vector2(430, 846)
 
 [node name="WaitingMarker" type="Marker2D" parent="CustomerManager" unique_id=1930833020]
-position = Vector2(579, 742)
+position = Vector2(629, 732)
 
 [node name="Timer" type="Timer" parent="CustomerManager" unique_id=1351809370]
 wait_time = 2.0
