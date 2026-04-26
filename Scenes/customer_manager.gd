@@ -48,8 +48,7 @@ func spawn_customer() -> void:
 	customer.setAssets(assetData)
 	
 	#Get random quantity
-	#var quantity: int = randi_range(2,6)
-	var quantity: int = 1
+	var quantity: int = randi_range(2,6)
 	customer.initCustomer(quantity)
 	
 	customer.position = spawn_marker.position
@@ -70,7 +69,7 @@ func moveToLine(customer: Customer) -> void:
 			await customer.moveCharacter(front_marker.position, timeAnimation)
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-			await customer.moveCharacter(waiting_marker.position, timeAnimation)
+			await customer.moveCharacter(waiting_marker.position, timeAnimation - 0.5)
 			customer.isWaitingWasher = true
 			GameManager.lookForWasher(customer)
 		1,2:
@@ -119,7 +118,7 @@ func _on_move_line() -> void:
 		match index:
 			0:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-				await customer.moveCharacter(waiting_marker.position, timeAnimation)
+				await customer.moveCharacter(waiting_marker.position, timeAnimation - 0.5)
 				customer.isWaitingWasher = true
 				GameManager.lookForWasher(customer)
 			1,2:
@@ -214,6 +213,8 @@ func _on_moveCustomerToWashingMachine(washer: WashingMachine, customer: Customer
 	
 	
 func _on_moveCustomerToExit(washer: WashingMachine, customer: Customer) -> void:
+	customer.change_state(GameManager.character_state.LOADING_LAUNDRY)
+	await get_tree().create_timer(2.0).timeout
 	var timeAnimation = 1
 	var laneChose: String
 	if laneAMachines.find(washer) >= 0:
@@ -294,6 +295,7 @@ func _on_moveCustomerToExit(washer: WashingMachine, customer: Customer) -> void:
 	await customer.moveCharacter(front_2_marker.position, timeAnimation+1)
 	customer.flipAsset()
 	await customer.moveCharacter(destroy_marker.position, timeAnimation+2)
-	customer.queue_free()
-	
+	await get_tree().create_timer(10.0).timeout
+	if customer:
+		customer.queue_free()
 	

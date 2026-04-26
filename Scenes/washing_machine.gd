@@ -132,8 +132,6 @@ func wash() -> void:
 	animation_player.play(wash_string)
 	await get_tree().create_timer(timeToFinish).timeout
 	reset_machine()
-	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
-	await get_tree().create_timer(2.0).timeout
 	GameManager.on_moveCustomerToExit.emit(self, customerAssigned)
 	GameManager.assign_customer(self)
 	

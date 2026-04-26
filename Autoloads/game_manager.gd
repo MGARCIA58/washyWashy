@@ -79,5 +79,4 @@ func assign_customer(washer: WashingMachine) -> void:
 		on_moveCustomerToWashingMachine.emit(washer,customer)
 
 	
-	#await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 	
