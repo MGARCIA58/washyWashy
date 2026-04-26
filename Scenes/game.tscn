@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://dxkuk57gopqqd" path="res://Assets/Background/base.png" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://cslcrpma22lwh" path="res://Assets/Background/pared.png" id="2_3dryh"]
-[ext_resource type="Texture2D" uid="uid://cr2xteqg7t6k8" path="res://Assets/Background/Fachada.png" id="3_wowpa"]
 [ext_resource type="Script" uid="uid://c2gw0st8vi2ln" path="res://Scenes/customer_manager.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://b8l1j3lwsc03y" path="res://Scenes/customer.tscn" id="4_wowpa"]
 [ext_resource type="Script" uid="uid://d4akkdny7sw7b" path="res://Resources/customer_bodies.gd" id="5_h4fw4"]
@@ -106,13 +105,6 @@ texture = ExtResource("1_wrm1d")
 position = Vector2(685, 315)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("2_3dryh")
-
-[node name="Background_Front" type="Sprite2D" parent="Background" unique_id=156987487]
-visible = false
-z_index = 2
-position = Vector2(714.99994, 691.99994)
-scale = Vector2(1.076, 1.076)
-texture = ExtResource("3_wowpa")
 
 [node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_a_2", "lane_a_3", "lane_a_4", "lane_b_2", "lane_c", "lane_c_2", "lane_c_3", "exit_marker", "front_2_marker", "destroy_marker", "laneAMachines", "laneA2Machines", "laneA3Machines", "laneA4Machines", "laneBMachines", "laneB2Machines", "laneB3Machines", "laneCMachines", "laneC2Machines", "laneC3Machines")]
 script = ExtResource("4_3dryh")
