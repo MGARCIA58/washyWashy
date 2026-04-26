@@ -19,21 +19,25 @@ signal on_customer_spawn()
 @export var lane_c: Marker2D
 @export var lane_c_2: Marker2D
 @export var lane_c_3: Marker2D
+@export var exit_marker: Marker2D
+@export var front_2_marker: Marker2D
+@export var destroy_marker: Marker2D
 @export var laneAMachines: Array[WashingMachine]
 @export var laneA2Machines: Array[WashingMachine]
 @export var laneA3Machines: Array[WashingMachine]
 @export var laneA4Machines: Array[WashingMachine]
 @export var laneBMachines: Array[WashingMachine]
 @export var laneB2Machines: Array[WashingMachine]
+@export var laneB3Machines: Array[WashingMachine]
 @export var laneCMachines: Array[WashingMachine]
 @export var laneC2Machines: Array[WashingMachine]
 @export var laneC3Machines: Array[WashingMachine]
-@export var exit_marker: Marker2D
 
 func _ready() -> void:
 	spawn_customer()
 	GameManager.on_move_line.connect(_on_move_line)
 	GameManager.on_moveCustomerToWashingMachine.connect(_on_moveCustomerToWashingMachine)
+	GameManager.on_moveCustomerToExit.connect(_on_moveCustomerToExit)
 
 func spawn_customer() -> void:
 	var customer: Customer = customerScene.instantiate()
@@ -44,7 +48,8 @@ func spawn_customer() -> void:
 	customer.setAssets(assetData)
 	
 	#Get random quantity
-	var quantity: int = randi_range(2,6)
+	#var quantity: int = randi_range(2,6)
+	var quantity: int = 1
 	customer.initCustomer(quantity)
 	
 	customer.position = spawn_marker.position
@@ -149,58 +154,56 @@ func _on_moveCustomerToWashingMachine(washer: WashingMachine, customer: Customer
 		laneChose = 'B'
 	if laneB2Machines.find(washer) >= 0:
 		laneChose = 'B2'
+	if laneB3Machines.find(washer) >= 0:
+		laneChose = 'B3'
 	if laneCMachines.find(washer) >= 0:
 		laneChose = 'C'
 	if laneC2Machines.find(washer) >= 0:
 		laneChose = 'C2'
 	if laneC3Machines.find(washer) >= 0:
 		laneChose = 'C3'
+	customer.change_state(GameManager.character_state.WALKING_DIRTY)
 	match laneChose:
 		'A':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 			customer.flipAsset()
 		'A2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
+			customer.flipAsset()
 			await customer.moveCharacter(lane_a_2.position, timeAnimation)
+			customer.flipAsset()
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 			customer.flipAsset()
 		'A3':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a_3.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'A4':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a_4.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'B':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'B2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(lane_b_2.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+		'B3':
+			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'C':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(lane_c.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'C2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(lane_c.position, timeAnimation)
 			await customer.moveCharacter(lane_c_2.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
 		'C3':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(lane_c.position, timeAnimation)
 			await customer.moveCharacter(lane_c_3.position, timeAnimation)
 			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
@@ -225,60 +228,72 @@ func _on_moveCustomerToExit(washer: WashingMachine, customer: Customer) -> void:
 		laneChose = 'B'
 	if laneB2Machines.find(washer) >= 0:
 		laneChose = 'B2'
+	if laneB3Machines.find(washer) >= 0:
+		laneChose = 'B3'
 	if laneCMachines.find(washer) >= 0:
 		laneChose = 'C'
 	if laneC2Machines.find(washer) >= 0:
 		laneChose = 'C2'
 	if laneC3Machines.find(washer) >= 0:
 		laneChose = 'C3'
+	customer.change_state(GameManager.character_state.WALKING_CLEAN)
 	match laneChose:
 		'A':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
-			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
 			await customer.moveCharacter(exit_marker.position, timeAnimation)
 			customer.flipAsset()
 		'A2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			await customer.moveCharacter(lane_a_2.position, timeAnimation)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
-			await customer.moveCharacter(lane_a_2.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			customer.flipAsset()
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
 			customer.flipAsset()
 		'A3':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
-			customer.flipAsset()
-			await customer.moveCharacter(lane_a.position, timeAnimation)
 			customer.flipAsset()
 			await customer.moveCharacter(lane_a_3.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
-		'A4':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
-			customer.flipAsset()
 			await customer.moveCharacter(lane_a.position, timeAnimation)
 			customer.flipAsset()
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+			customer.flipAsset()
+		'A4':
+			customer.flipAsset()
 			await customer.moveCharacter(lane_a_4.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			await customer.moveCharacter(lane_a.position, timeAnimation)
+			customer.flipAsset()
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+			customer.flipAsset()
 		'B':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+			customer.flipAsset()
 		'B2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			customer.flipAsset()
 			await customer.moveCharacter(lane_b_2.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+		'B3':
+			customer.flipAsset()
+			await customer.moveCharacter(waiting_marker.position, timeAnimation)
+			customer.flipAsset()
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+			customer.flipAsset()
 		'C':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
+			customer.flipAsset()
 			await customer.moveCharacter(lane_c.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
 		'C2':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
-			await customer.moveCharacter(lane_c.position, timeAnimation)
+			customer.flipAsset()
 			await customer.moveCharacter(lane_c_2.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
-		'C3':
-			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(lane_c.position, timeAnimation)
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+		'C3':
+			customer.flipAsset()
 			await customer.moveCharacter(lane_c_3.position, timeAnimation)
-			await customer.moveCharacter(Vector2(washer.position.x-75,washer.position.y), timeAnimation)
+			await customer.moveCharacter(lane_c.position, timeAnimation)
+			await customer.moveCharacter(exit_marker.position, timeAnimation)
+	customer.z_index +=1
+	await customer.moveCharacter(front_2_marker.position, timeAnimation+1)
+	customer.flipAsset()
+	await customer.moveCharacter(destroy_marker.position, timeAnimation+2)
+	customer.queue_free()
 	
 	

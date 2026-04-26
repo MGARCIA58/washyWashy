@@ -114,7 +114,7 @@ position = Vector2(714.99994, 691.99994)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("3_wowpa")
 
-[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_a_2", "lane_a_3", "lane_a_4", "lane_b_2", "lane_c", "lane_c_2", "lane_c_3", "laneAMachines", "laneA2Machines", "laneA3Machines", "laneA4Machines", "laneBMachines", "laneB2Machines", "laneCMachines", "laneC2Machines", "laneC3Machines")]
+[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_a_2", "lane_a_3", "lane_a_4", "lane_b_2", "lane_c", "lane_c_2", "lane_c_3", "exit_marker", "front_2_marker", "destroy_marker", "laneAMachines", "laneA2Machines", "laneA3Machines", "laneA4Machines", "laneBMachines", "laneB2Machines", "laneB3Machines", "laneCMachines", "laneC2Machines", "laneC3Machines")]
 script = ExtResource("4_3dryh")
 customerScene = ExtResource("4_wowpa")
 customerBodies = Array[ExtResource("5_h4fw4")]([ExtResource("6_ldgsr"), ExtResource("7_o5yvi"), ExtResource("8_rku1e"), ExtResource("9_rfjv2")])
@@ -131,12 +131,16 @@ lane_b_2 = NodePath("LaneB2")
 lane_c = NodePath("LaneC")
 lane_c_2 = NodePath("LaneC2")
 lane_c_3 = NodePath("LaneC3")
+exit_marker = NodePath("ExitMarker")
+front_2_marker = NodePath("Front2Marker")
+destroy_marker = NodePath("DestroyMarker")
 laneAMachines = [NodePath("../WashingMachine13")]
 laneA2Machines = [NodePath("../WashingMachine9")]
 laneA3Machines = [NodePath("../WashingMachine5"), NodePath("../WashingMachine6")]
 laneA4Machines = [NodePath("../WashingMachine"), NodePath("../WashingMachine2")]
-laneBMachines = [NodePath("../WashingMachine10"), NodePath("../WashingMachine11"), NodePath("../WashingMachine14"), NodePath("../WashingMachine15")]
+laneBMachines = [NodePath("../WashingMachine10"), NodePath("../WashingMachine14")]
 laneB2Machines = [NodePath("../WashingMachine3"), NodePath("../WashingMachine7")]
+laneB3Machines = [NodePath("../WashingMachine11"), NodePath("../WashingMachine15")]
 laneCMachines = [NodePath("../WashingMachine16")]
 laneC2Machines = [NodePath("../WashingMachine8"), NodePath("../WashingMachine12")]
 laneC3Machines = [NodePath("../WashingMachine4")]
@@ -179,6 +183,12 @@ position = Vector2(588, 709)
 
 [node name="ExitMarker" type="Marker2D" parent="CustomerManager" unique_id=113262599]
 position = Vector2(648, 741)
+
+[node name="Front2Marker" type="Marker2D" parent="CustomerManager" unique_id=1919247002]
+position = Vector2(483, 877)
+
+[node name="DestroyMarker" type="Marker2D" parent="CustomerManager" unique_id=1320521925]
+position = Vector2(1215, 1413)
 
 [node name="Timer" type="Timer" parent="CustomerManager" unique_id=1351809370]
 wait_time = 2.0

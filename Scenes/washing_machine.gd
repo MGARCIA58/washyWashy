@@ -134,7 +134,7 @@ func wash() -> void:
 	reset_machine()
 	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
 	await get_tree().create_timer(2.0).timeout
-	customerAssigned.change_state(GameManager.character_state.WALKING_CLEAN)
+	GameManager.on_moveCustomerToExit.emit(self, customerAssigned)
 	GameManager.assign_customer(self)
 	
 

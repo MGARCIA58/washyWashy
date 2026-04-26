@@ -4,6 +4,7 @@ signal on_washer_selected(washer: WashingMachine)
 signal on_level_up(washer: WashingMachine)
 signal on_move_line()
 signal on_moveCustomerToWashingMachine()
+signal on_moveCustomerToExit(washer: WashingMachine, customer: Customer)
 
 enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALKING_DIRTY_BACK, LOADING_LAUNDRY}
 
