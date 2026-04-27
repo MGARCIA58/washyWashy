@@ -25,6 +25,7 @@ class_name AdminPanel
 @export var machine_spaces_quantity_label: Label
 @export var customers_waiting_quantity_label: Label
 var current_washer: WashingMachine
+var last_washer: WashingMachine
 
 func _ready() -> void:
 	GameManager.on_washer_selected.connect(_on_washing_machine_on_washer_selected)
@@ -41,6 +42,12 @@ func _process(_delta: float) -> void:
 	current_coins_label.text = GameManager.format_coins(GameManager.current_coins)
 
 func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
+	if !last_washer:
+		last_washer = washer
+	if last_washer != washer:
+		glow_off(last_washer)
+		last_washer = washer
+	glow_on(washer)
 	current_washer = washer
 	inspector_image.show()
 	level_container.show()
@@ -77,3 +84,11 @@ func _on_button_pressed() -> void:
 	if GameManager.current_coins >= GameManager.get_upgrade_cost(current_washer.wash_level):
 		GameManager.current_coins -= GameManager.get_upgrade_cost(current_washer.wash_level)
 		current_washer.level_up()
+
+func glow_on(washingMachine: WashingMachine):
+	# Increase raw values for glow
+	washingMachine.body.self_modulate = Color(1.5, 1.5, 1.5, 1.25)
+
+func glow_off(washingMachine: WashingMachine):
+	# Return to normal
+	washingMachine.body.self_modulate = Color(1, 1, 1, 1)

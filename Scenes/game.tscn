@@ -21,6 +21,10 @@
 [ext_resource type="LabelSettings" uid="uid://che1jd5k3m7rg" path="res://LabelSettings/stats_settings.tres" id="16_nnt18"]
 [ext_resource type="Texture2D" uid="uid://df6rrwj2a6opi" path="res://UI/arrowUp.png" id="19_7nbq1"]
 
+[sub_resource type="Environment" id="Environment_7nbq1"]
+glow_enabled = true
+glow_bloom = 0.01
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5yvi"]
 bg_color = Color(1, 1, 1, 1)
 border_width_left = 8
@@ -92,6 +96,9 @@ corner_radius_bottom_right = 1000
 corner_radius_bottom_left = 1000
 
 [node name="Game" type="Node2D" unique_id=849719722]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=638832169]
+environment = SubResource("Environment_7nbq1")
 
 [node name="Background" type="Node2D" parent="." unique_id=964466233]
 position = Vector2(-138, 0)
