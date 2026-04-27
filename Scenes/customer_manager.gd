@@ -69,10 +69,10 @@ func moveToLine(customer: Customer) -> void:
 			await customer.moveCharacter(front_marker.position, timeAnimation)
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
-			await customer.moveCharacter(waiting_marker.position, timeAnimation - 0.5)
+			await customer.moveCharacter(waiting_marker.position, timeAnimation)
 			customer.isWaitingWasher = true
 			GameManager.lookForWasher(customer)
-		1,2:
+		1,2,3:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
 			
@@ -82,7 +82,7 @@ func moveToLine(customer: Customer) -> void:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 			await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation)
 			
-		3:
+		4:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
 			
@@ -91,7 +91,7 @@ func moveToLine(customer: Customer) -> void:
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 			
-		4,5,6,7,8,_:
+		5,6,7,8,_:
 			customer.change_state(GameManager.character_state.WALKING_DIRTY)
 			await customer.moveCharacter(corner_marker.position, timeAnimation)
 			
@@ -121,16 +121,16 @@ func _on_move_line() -> void:
 				await customer.moveCharacter(waiting_marker.position, timeAnimation - 0.5)
 				customer.isWaitingWasher = true
 				GameManager.lookForWasher(customer)
-			1,2:
+			1,2,3:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-50,GameManager.customersWaiting[index-1].finalPosition.y+30), timeAnimation)
 				
-			3:
+			4:
 				customer.change_state(GameManager.character_state.WALKING_DIRTY)
 				await customer.moveCharacter(front_marker.position, timeAnimation)	
 				customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 				
-			4,5,6,7,8,_:	
+			5,6,7,8,_:	
 				customer.change_state(GameManager.character_state.WALKING_DIRTY)
 				await customer.moveCharacter(Vector2(GameManager.customersWaiting[index-1].finalPosition.x-80,GameManager.customersWaiting[index-1].finalPosition.y-50), timeAnimation)
 				customer.change_state(GameManager.character_state.WAITING_DIRTY)
