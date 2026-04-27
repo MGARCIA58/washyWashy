@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d157qdcf1rpe8" path="res://Assets/Washers/wash4.png" id="6_ev73b"]
 [ext_resource type="Texture2D" uid="uid://dxiijg2x2uwuu" path="res://Assets/Washers/wash5.png" id="7_rityg"]
 [ext_resource type="Texture2D" uid="uid://db6j6282uurql" path="res://Assets/Washers/wash6.png" id="8_tl235"]
+[ext_resource type="PackedScene" uid="uid://dx46sp0ce4bvf" path="res://Scenes/washing_bar.tscn" id="9_pk6di"]
 
 [sub_resource type="Animation" id="Animation_pk6di"]
 length = 0.001
@@ -153,7 +154,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [-0.017453292519943295, 0.017453292519943295]
+"values": [-0.01745329251994329, 0.01745329251994329]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pk6di"]
@@ -171,10 +172,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvwyg"]
 size = Vector2(500, 500)
 
-[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("animation_player", "body")]
+[node name="WashingMachine" type="Node2D" unique_id=1550306222 node_paths=PackedStringArray("washing_bar", "animation_player", "body")]
 z_index = 2
 scale = Vector2(0.22, 0.22)
 script = ExtResource("1_32040")
+washing_bar = NodePath("WashingBar")
 animation_player = NodePath("AnimationPlayer")
 wash_0 = ExtResource("1_1tly0")
 wash_1 = ExtResource("3_jvwyg")
@@ -199,5 +201,11 @@ autoplay = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=417162852]
 position = Vector2(-4.5454545, 4.5454545)
 shape = SubResource("RectangleShape2D_jvwyg")
+
+[node name="WashingBar" parent="." unique_id=997737750 instance=ExtResource("9_pk6di")]
+offset_left = -95.45455
+offset_top = -363.63638
+offset_right = -95.45455
+offset_bottom = -363.63638
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

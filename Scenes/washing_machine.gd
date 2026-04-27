@@ -1,6 +1,7 @@
 extends Node2D
 class_name WashingMachine
 
+@export var washing_bar: WashingBar
 @export var animation_player: AnimationPlayer
 @export var wash_0: CompressedTexture2D
 @export var wash_1: CompressedTexture2D
@@ -121,6 +122,8 @@ func reset_machine() -> void:
 		animation_player.play("RESET")
 
 func wash() -> void:
+	washing_bar.reset_bar()
+	washing_bar.show()
 	GameManager.current_coins += customerAssigned.quantity_laundry * coin_quantity
 	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
 	await get_tree().create_timer(2.0).timeout
@@ -130,8 +133,10 @@ func wash() -> void:
 	var wash_string: String = "wash_%d" % wash_level
 	var timeToFinish = customerAssigned.quantity_laundry * time_quantity
 	animation_player.play(wash_string)
+	washing_bar.washingBarProgress(timeToFinish)
 	await get_tree().create_timer(timeToFinish).timeout
 	reset_machine()
+	washing_bar.hide()
 	GameManager.on_moveCustomerToExit.emit(self, customerAssigned)
 	GameManager.assign_customer(self)
 	
