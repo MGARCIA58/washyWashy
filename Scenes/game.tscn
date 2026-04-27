@@ -106,7 +106,7 @@ position = Vector2(685, 315)
 scale = Vector2(1.076, 1.076)
 texture = ExtResource("2_3dryh")
 
-[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_a_2", "lane_a_3", "lane_a_4", "lane_b_2", "lane_c", "lane_c_2", "lane_c_3", "exit_marker", "front_2_marker", "destroy_marker", "laneAMachines", "laneA2Machines", "laneA3Machines", "laneA4Machines", "laneBMachines", "laneB2Machines", "laneB3Machines", "laneCMachines", "laneC2Machines", "laneC3Machines")]
+[node name="CustomerManager" type="Node" parent="." unique_id=587531568 node_paths=PackedStringArray("spawn_marker", "corner_marker", "front_marker", "waiting_marker", "timer", "lane_a", "lane_a_2", "lane_a_3", "lane_a_4", "lane_b_2", "lane_c", "lane_c_2", "lane_c_3", "exit_marker", "front_2_marker", "destroy_marker", "laneAMachines", "laneA2Machines", "laneA3Machines", "laneA4Machines", "laneBMachines", "laneB2Machines", "laneB3Machines", "laneCMachines", "laneC2Machines", "laneC3Machines", "washing_machine", "washing_machine_2", "washing_machine_3", "washing_machine_4", "washing_machine_5", "washing_machine_6", "washing_machine_7", "washing_machine_8", "washing_machine_9", "washing_machine_10", "washing_machine_11", "washing_machine_12", "washing_machine_13", "washing_machine_14", "washing_machine_15", "washing_machine_16")]
 script = ExtResource("4_3dryh")
 customerScene = ExtResource("4_wowpa")
 customerBodies = Array[ExtResource("5_h4fw4")]([ExtResource("6_ldgsr"), ExtResource("7_o5yvi"), ExtResource("8_rku1e"), ExtResource("9_rfjv2")])
@@ -136,6 +136,22 @@ laneB3Machines = [NodePath("../WashingMachine11"), NodePath("../WashingMachine15
 laneCMachines = [NodePath("../WashingMachine16")]
 laneC2Machines = [NodePath("../WashingMachine8"), NodePath("../WashingMachine12")]
 laneC3Machines = [NodePath("../WashingMachine4")]
+washing_machine = NodePath("../WashingMachine")
+washing_machine_2 = NodePath("../WashingMachine2")
+washing_machine_3 = NodePath("../WashingMachine3")
+washing_machine_4 = NodePath("../WashingMachine4")
+washing_machine_5 = NodePath("../WashingMachine5")
+washing_machine_6 = NodePath("../WashingMachine6")
+washing_machine_7 = NodePath("../WashingMachine7")
+washing_machine_8 = NodePath("../WashingMachine8")
+washing_machine_9 = NodePath("../WashingMachine9")
+washing_machine_10 = NodePath("../WashingMachine10")
+washing_machine_11 = NodePath("../WashingMachine11")
+washing_machine_12 = NodePath("../WashingMachine12")
+washing_machine_13 = NodePath("../WashingMachine13")
+washing_machine_14 = NodePath("../WashingMachine14")
+washing_machine_15 = NodePath("../WashingMachine15")
+washing_machine_16 = NodePath("../WashingMachine16")
 
 [node name="LaneA" type="Marker2D" parent="CustomerManager" unique_id=794239996]
 position = Vector2(489, 623)
@@ -187,66 +203,82 @@ wait_time = 2.0
 autostart = true
 
 [node name="WashingMachine" parent="." unique_id=1550306222 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(924.99994, 325)
 
 [node name="WashingMachine2" parent="." unique_id=410289551 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1105, 394)
 
 [node name="WashingMachine3" parent="." unique_id=893897098 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1290, 478)
 
 [node name="WashingMachine4" parent="." unique_id=1249994898 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1498, 569)
 
 [node name="WashingMachine5" parent="." unique_id=105391307 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(772, 392.00003)
 
 [node name="WashingMachine6" parent="." unique_id=1799537458 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(955, 468)
 
 [node name="WashingMachine7" parent="." unique_id=1389973262 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1142, 561.99994)
 
 [node name="WashingMachine8" parent="." unique_id=1151756827 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1356, 654)
 
 [node name="WashingMachine9" parent="." unique_id=1822446458 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(611, 460.00003)
 
 [node name="WashingMachine10" parent="." unique_id=1078541086 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(801, 551)
 
 [node name="WashingMachine11" parent="." unique_id=249831881 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(991, 641)
 
 [node name="WashingMachine12" parent="." unique_id=1582554301 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1210, 738)
 
 [node name="WashingMachine13" parent="." unique_id=1128182561 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(455, 542)
 
 [node name="WashingMachine14" parent="." unique_id=1483091154 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(632, 624)
 
 [node name="WashingMachine15" parent="." unique_id=843062483 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(825, 725)
 
 [node name="WashingMachine16" parent="." unique_id=1310113461 instance=ExtResource("11_o5yvi")]
+visible = false
 z_index = 1
 position = Vector2(1070, 826)
 

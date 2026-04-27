@@ -32,6 +32,23 @@ signal on_customer_spawn()
 @export var laneCMachines: Array[WashingMachine]
 @export var laneC2Machines: Array[WashingMachine]
 @export var laneC3Machines: Array[WashingMachine]
+@export var washing_machine: WashingMachine
+@export var washing_machine_2: WashingMachine
+@export var washing_machine_3: WashingMachine
+@export var washing_machine_4: WashingMachine
+@export var washing_machine_5: WashingMachine
+@export var washing_machine_6: WashingMachine
+@export var washing_machine_7: WashingMachine
+@export var washing_machine_8: WashingMachine
+@export var washing_machine_9: WashingMachine
+@export var washing_machine_10: WashingMachine
+@export var washing_machine_11: WashingMachine
+@export var washing_machine_12: WashingMachine
+@export var washing_machine_13: WashingMachine
+@export var washing_machine_14: WashingMachine
+@export var washing_machine_15: WashingMachine
+@export var washing_machine_16: WashingMachine
+
 
 func _ready() -> void:
 	spawn_customer()
@@ -70,6 +87,7 @@ func moveToLine(customer: Customer) -> void:
 			
 			customer.change_state(GameManager.character_state.WALKING_DIRTY_BACK)
 			await customer.moveCharacter(waiting_marker.position, timeAnimation)
+			showWashingMachines()
 			customer.isWaitingWasher = true
 			GameManager.lookForWasher(customer)
 		1,2,3:
@@ -137,6 +155,23 @@ func _on_move_line() -> void:
 	if GameManager.customersWaiting.size() < limitCustomers:
 		spawn_customer()
 
+func showWashingMachines() -> void:
+	washing_machine.show()
+	washing_machine_2.show()
+	washing_machine_3.show()
+	washing_machine_4.show()
+	washing_machine_5.show()
+	washing_machine_6.show()
+	washing_machine_7.show()
+	washing_machine_8.show()
+	washing_machine_9.show()
+	washing_machine_10.show()
+	washing_machine_11.show()
+	washing_machine_12.show()
+	washing_machine_13.show()
+	washing_machine_14.show()
+	washing_machine_15.show()
+	washing_machine_16.show()
 
 func _on_moveCustomerToWashingMachine(washer: WashingMachine, customer: Customer) -> void:
 	var timeAnimation = 1
