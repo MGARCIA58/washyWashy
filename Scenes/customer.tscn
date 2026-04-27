@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://l16kqjrgtoej" path="res://Scenes/customer.gd" id="1_7c3kf"]
 [ext_resource type="Texture2D" uid="uid://m5fnw1hyi51m" path="res://Assets/Characters/C1_Walking_dirty.png" id="2_0v30w"]
+[ext_resource type="FontFile" uid="uid://bl06gch0bh3e1" path="res://UI/Kenney Future.ttf" id="3_qf3me"]
+[ext_resource type="Texture2D" uid="uid://bpjnt0gemp7js" path="res://UI/15.png" id="4_vkxjs"]
 
 [sub_resource type="Animation" id="Animation_qf3me"]
 length = 0.001
@@ -72,10 +74,16 @@ _data = {
 &"Walking": SubResource("Animation_fhub2")
 }
 
-[node name="Customer" type="Node2D" unique_id=188134230 node_paths=PackedStringArray("body", "animation_player")]
+[sub_resource type="LabelSettings" id="LabelSettings_fhub2"]
+font = ExtResource("3_qf3me")
+font_size = 20
+
+[node name="Customer" type="Node2D" unique_id=188134230 node_paths=PackedStringArray("body", "animation_player", "quantity_label", "cloth_texture")]
 script = ExtResource("1_7c3kf")
 body = NodePath("Body")
 animation_player = NodePath("AnimationPlayer")
+quantity_label = NodePath("HBoxContainer/quantityLabel")
+cloth_texture = NodePath("HBoxContainer/clothTexture")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1613242867]
 z_index = 1
@@ -85,3 +93,25 @@ texture = ExtResource("2_0v30w")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=532453802]
 libraries/ = SubResource("AnimationLibrary_2o0mk")
 autoplay = &"Waiting"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2120058978]
+offset_left = 26.0
+offset_top = 48.0
+offset_right = 66.0
+offset_bottom = 88.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="quantityLabel" type="Label" parent="HBoxContainer" unique_id=2024131276]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_fhub2")
+
+[node name="clothTexture" type="TextureRect" parent="HBoxContainer" unique_id=1877606869]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_vkxjs")
+expand_mode = 1
+stretch_mode = 5

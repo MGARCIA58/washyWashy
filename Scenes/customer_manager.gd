@@ -244,6 +244,8 @@ func _on_moveCustomerToWashingMachine(washer: WashingMachine, customer: Customer
 	
 	customer.isWaitingWasher = false
 	washer.customerAssigned = customer
+	customer.quantity_label.hide()
+	customer.cloth_texture.hide()
 	washer.wash()
 	
 	

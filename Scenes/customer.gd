@@ -2,6 +2,8 @@ extends Node2D
 class_name Customer
 @export var body: Sprite2D
 @export var animation_player: AnimationPlayer
+@export var quantity_label: Label
+@export var cloth_texture: TextureRect
 
 var quantity_laundry
 var waiting_dirty: Texture2D
@@ -15,6 +17,7 @@ var isWaitingWasher = false
 
 func initCustomer(quantity: int) -> void:
 	quantity_laundry = quantity
+	quantity_label.text = str(quantity)
 	
 func setAssets(customerBodies: CustomerBodies) -> void:
 	waiting_dirty = customerBodies.waiting_dirty
