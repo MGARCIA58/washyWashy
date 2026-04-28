@@ -5,6 +5,7 @@ signal on_level_up(washer: WashingMachine)
 signal on_move_line()
 signal on_moveCustomerToWashingMachine()
 signal on_moveCustomerToExit(washer: WashingMachine, customer: Customer)
+signal on_skin_unlocked(washingMachineSkinUnlocked:CompressedTexture2D)
 
 enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALKING_DIRTY_BACK, LOADING_LAUNDRY}
 
@@ -20,10 +21,45 @@ enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALK
 @onready var lane_b: Marker2D
 @onready var lane_c: Marker2D
 
+const wash_0 = preload("uid://ckf4yi7wfw8tk")
+const wash_1 = preload("uid://34kbjhghgvmh")
+const wash_2 = preload("uid://cr2yd674nooje")
+const wash_3 = preload("uid://bpho34sne2i3m")
+const wash_4 = preload("uid://d157qdcf1rpe8")
+const wash_5 = preload("uid://dxiijg2x2uwuu")
+const wash_6 = preload("uid://db6j6282uurql")
+const wash_skin_1 = preload("uid://op3e7wjctb0x")
+const wash_skin_2 = preload("uid://ca6fps2bmm2dh")
+const wash_skin_3 = preload("uid://dpk5dxilb5a5p")
+const wash_skin_4 = preload("uid://cfkpvqt6kpat4")
+const wash_skin_5 = preload("uid://dthjfc78ov4f7")
+const wash_skin_6 = preload("uid://bq1b72yw6huml")
+
+
+
 var customersWaiting : Array[Customer] = []
 var availableWashingMachines: Array[WashingMachine]
 var current_coins = 0.0
+var unlockedWashingMachinesSkins: Array[CompressedTexture2D]
+var level1MachinesUnlocked: int = 0
+var level2MachinesUnlocked: int = 0
+var level3MachinesUnlocked: int = 0
+var level4MachinesUnlocked: int = 0
+var level5MachinesUnlocked: int = 0
+var level6MachinesUnlocked: int = 0
 
+var islevel1MachinesUnlocked: bool = false
+var islevel2MachinesUnlocked: bool = false
+var islevel3MachinesUnlocked: bool = false
+var islevel4MachinesUnlocked: bool = false
+var islevel5MachinesUnlocked: bool = false
+var islevel6MachinesUnlocked: bool = false
+var islevel1SkinMachinesUnlocked: bool = false
+var islevel2SkinMachinesUnlocked: bool = false
+var islevel3SkinMachinesUnlocked: bool = false
+var islevel4SkinMachinesUnlocked: bool = false
+var islevel5SkinMachinesUnlocked: bool = false
+var islevel6SkinMachinesUnlocked: bool = false
 func _ready() -> void:
 	on_level_up.connect(_on_level_up)
 	current_coins = get_upgrade_cost(0)
@@ -66,6 +102,7 @@ func round_to_one_decimal(amount: float) -> float:
 
 func _on_level_up(washer: WashingMachine) -> void:
 	assign_customer(washer)
+	checkUnlockedSkins()
 
 func lookForWasher(customer: Customer) -> void:
 	for washer in availableWashingMachines:
@@ -78,5 +115,53 @@ func assign_customer(washer: WashingMachine) -> void:
 		on_move_line.emit()
 		on_moveCustomerToWashingMachine.emit(washer,customer)
 
-	
+func checkUnlockedSkins() -> void:
+	if level1MachinesUnlocked == 1 && !islevel1MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_1)
+		islevel1MachinesUnlocked = true
+	if level2MachinesUnlocked == 1 && !islevel2MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_2)
+		on_skin_unlocked.emit(wash_2)
+		islevel2MachinesUnlocked = true
+	if level3MachinesUnlocked == 1 && !islevel3MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_3)
+		on_skin_unlocked.emit(wash_3)
+		islevel3MachinesUnlocked = true
+	if level4MachinesUnlocked == 1 && !islevel4MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_4)
+		on_skin_unlocked.emit(wash_4)
+		islevel4MachinesUnlocked = true
+	if level5MachinesUnlocked == 1 && !islevel5MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_5)
+		on_skin_unlocked.emit(wash_5)
+		islevel5MachinesUnlocked = true
+	if level6MachinesUnlocked == 1 && !islevel6MachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_6)
+		on_skin_unlocked.emit(wash_6)
+		islevel6MachinesUnlocked = true
+
+	if level1MachinesUnlocked == 8 && !islevel1SkinMachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_skin_1)
+		on_skin_unlocked.emit(wash_skin_1)
+		islevel1SkinMachinesUnlocked = true
+	if level2MachinesUnlocked == 8 && !islevel2SkinMachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_skin_2)
+		on_skin_unlocked.emit(wash_skin_2)
+		islevel2SkinMachinesUnlocked = true
+	if level3MachinesUnlocked == 8 && !islevel3SkinMachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_skin_3)
+		on_skin_unlocked.emit(wash_skin_3)
+		islevel3SkinMachinesUnlocked = true
+	if level4MachinesUnlocked == 8 && !islevel4SkinMachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_skin_4)
+		on_skin_unlocked.emit(wash_skin_4)
+		islevel4SkinMachinesUnlocked = true
+	if level5MachinesUnlocked == 8 && !islevel5SkinMachinesUnlocked:
+		on_skin_unlocked.emit(wash_skin_5)
+		islevel5SkinMachinesUnlocked = true
+		unlockedWashingMachinesSkins.append(wash_skin_5)
+	if level6MachinesUnlocked == 8 && !islevel6SkinMachinesUnlocked:
+		unlockedWashingMachinesSkins.append(wash_skin_6)
+		on_skin_unlocked.emit(wash_skin_6)
+		islevel6SkinMachinesUnlocked = true
 	

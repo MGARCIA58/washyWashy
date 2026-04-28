@@ -22,6 +22,7 @@ var washing_machine: Texture2D
 var wash_level: int = 0
 var isOccupied = false
 var customerAssigned: Customer
+var currentIndexUnlockedSkins: int = 0
 
 func washMachine_init() -> void:
 	body.texture = wash_0
@@ -42,31 +43,37 @@ func level_up() -> void:
 			GameManager.level_1_machines_quantity += 1
 			GameManager.availableWashingMachines.append(self)			
 			GameManager.my_washers += 1
+			GameManager.level1MachinesUnlocked +=1
 		2:
 			body.texture = wash_2
 			upgrade_coin_percentage = 1.95
 			GameManager.level_1_machines_quantity -= 1
 			GameManager.level_2_machines_quantity += 1
+			GameManager.level2MachinesUnlocked +=1
 		3:
 			body.texture = wash_3
 			upgrade_coin_percentage = 3.06
 			GameManager.level_2_machines_quantity -= 1
 			GameManager.level_3_machines_quantity += 1
+			GameManager.level3MachinesUnlocked +=1
 		4:
 			body.texture = wash_4
 			upgrade_coin_percentage = 5.36
 			GameManager.level_3_machines_quantity -= 1
 			GameManager.level_4_machines_quantity += 1
+			GameManager.level4MachinesUnlocked +=1
 		5:
 			body.texture = wash_5
 			upgrade_coin_percentage = 9.38
 			GameManager.level_4_machines_quantity -= 1
 			GameManager.level_5_machines_quantity += 1
+			GameManager.level5MachinesUnlocked +=1
 		6:
 			body.texture = wash_6
 			upgrade_coin_percentage = 5.41
 			GameManager.level_5_machines_quantity -= 1
 			GameManager.level_6_machines_quantity += 1
+			GameManager.level6MachinesUnlocked +=1
 	
 	coin_quantity = ceil(coin_quantity * upgrade_coin_percentage)
 	time_quantity -= upgrade_time_reduction
@@ -144,3 +151,15 @@ func wash() -> void:
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		GameManager.on_washer_selected.emit(self)
+
+func next_skin() -> CompressedTexture2D:
+	currentIndexUnlockedSkins = (currentIndexUnlockedSkins + 1) % GameManager.unlockedWashingMachinesSkins.size()
+	var skin = GameManager.unlockedWashingMachinesSkins[currentIndexUnlockedSkins]
+	body.texture = skin
+	return skin
+	
+func previous_skin() -> CompressedTexture2D:
+	currentIndexUnlockedSkins = (currentIndexUnlockedSkins - 1) % GameManager.unlockedWashingMachinesSkins.size()
+	var skin = GameManager.unlockedWashingMachinesSkins[currentIndexUnlockedSkins]
+	body.texture = skin
+	return skin

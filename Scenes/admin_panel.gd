@@ -6,6 +6,8 @@ class_name AdminPanel
 @export var level_container: HBoxContainer
 @export var machine_stats_container: VBoxContainer
 @export var upgrade_card: PanelContainer
+@export var skin_unlocked: Panel
+@export var washer_unlocked: TextureRect
 
 @export var current_wash_machine_texture: TextureRect
 @export var level_label: Label
@@ -24,12 +26,16 @@ class_name AdminPanel
 @export var level_6_machines_quantity: Label
 @export var machine_spaces_quantity_label: Label
 @export var customers_waiting_quantity_label: Label
+@export var select_skin_left_button: TextureButton
+@export var select_skin_right_button: TextureButton
+
 var current_washer: WashingMachine
 var last_washer: WashingMachine
 
 func _ready() -> void:
 	GameManager.on_washer_selected.connect(_on_washing_machine_on_washer_selected)
 	GameManager.on_level_up.connect(_on_level_up)
+	GameManager.on_skin_unlocked.connect(_on_skin_unlocked)
 	total_machines_quantity_label.text = str(GameManager.my_washers)
 	level_1_machines_quantity.text = str(GameManager.level_1_machines_quantity)
 	level_2_machines_quantity.text = str(GameManager.level_2_machines_quantity)
@@ -92,3 +98,20 @@ func glow_on(washingMachine: WashingMachine):
 func glow_off(washingMachine: WashingMachine):
 	# Return to normal
 	washingMachine.body.self_modulate = Color(1, 1, 1, 1)
+
+func _on_skin_unlocked(washingMachineSkinUnlocked: CompressedTexture2D) -> void:
+	skin_unlocked.show()
+	select_skin_left_button.show()
+	select_skin_right_button.show()
+	washer_unlocked.texture = washingMachineSkinUnlocked
+
+func _on_button_thanks_pressed() -> void:
+	skin_unlocked.hide()
+
+
+func _on_select_skin_left_button_pressed() -> void:
+	current_wash_machine_texture.texture = current_washer.previous_skin()
+
+
+func _on_select_skin_right_button_pressed() -> void:
+	current_wash_machine_texture.texture = current_washer.next_skin()
