@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://s6m7lwuv1fma"]
+
+[ext_resource type="Script" uid="uid://bn5pwlw41ycqp" path="res://Scenes/sound_manager.gd" id="1_25ke0"]
+[ext_resource type="AudioStream" uid="uid://caukexboevxt7" path="res://Assets/Audio/corporate-music-zone-horizons-loop.wav" id="2_1ohty"]
+
+[node name="SoundManager" type="Node" unique_id=33696257 node_paths=PackedStringArray("music_player", "stream_players")]
+script = ExtResource("1_25ke0")
+music_player = NodePath("MusicPlayer")
+stream_players = [NodePath("AudioStreamPlayer"), NodePath("AudioStreamPlayer2"), NodePath("AudioStreamPlayer3"), NodePath("AudioStreamPlayer4"), NodePath("AudioStreamPlayer5"), NodePath("AudioStreamPlayer6"), NodePath("AudioStreamPlayer7"), NodePath("AudioStreamPlayer8"), NodePath("AudioStreamPlayer9"), NodePath("AudioStreamPlayer10"), NodePath("AudioStreamPlayer11"), NodePath("AudioStreamPlayer12"), NodePath("AudioStreamPlayer13"), NodePath("AudioStreamPlayer14"), NodePath("AudioStreamPlayer15"), NodePath("AudioStreamPlayer16"), NodePath("AudioStreamPlayer17")]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=331469339]
+stream = ExtResource("2_1ohty")
+autoplay = true
+bus = &"MusicBus"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1427374722]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=755572438]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="." unique_id=2138386285]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="." unique_id=530174417]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="." unique_id=204565226]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="." unique_id=729682067]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="." unique_id=1132050791]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="." unique_id=730235231]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="." unique_id=1258034254]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="." unique_id=1982518834]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer11" type="AudioStreamPlayer" parent="." unique_id=1835253831]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer12" type="AudioStreamPlayer" parent="." unique_id=1130843336]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer13" type="AudioStreamPlayer" parent="." unique_id=1212204990]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer14" type="AudioStreamPlayer" parent="." unique_id=1061975007]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer15" type="AudioStreamPlayer" parent="." unique_id=1273933029]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer16" type="AudioStreamPlayer" parent="." unique_id=650249764]
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer17" type="AudioStreamPlayer" parent="." unique_id=206295937]
+volume_db = -15.0
+bus = &"SFX"
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]

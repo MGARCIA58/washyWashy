@@ -132,6 +132,7 @@ func wash() -> void:
 	washing_bar.reset_bar()
 	washing_bar.show()
 	GameManager.play_coin_vfx(customerAssigned.position)
+	SoundManager.play_coins()
 	GameManager.current_coins += customerAssigned.quantity_laundry * coin_quantity
 	customerAssigned.change_state(GameManager.character_state.LOADING_LAUNDRY)
 	await get_tree().create_timer(2.0).timeout

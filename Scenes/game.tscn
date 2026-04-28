@@ -24,6 +24,7 @@
 [ext_resource type="StyleBox" uid="uid://dcxwtvdcrjexc" path="res://Scenes/button.tres" id="21_vm72l"]
 [ext_resource type="StyleBox" uid="uid://dgwsobs0f5rvu" path="res://Scenes/button_hover.tres" id="22_vm72l"]
 [ext_resource type="Texture2D" uid="uid://cwbwwornl2wtg" path="res://UI/arrow_decorative_e.png" id="23_22asu"]
+[ext_resource type="Texture2D" uid="uid://ciesugfqnaerr" path="res://UI/settings.png" id="25_22asu"]
 
 [sub_resource type="Environment" id="Environment_7nbq1"]
 glow_enabled = true
@@ -1278,6 +1279,24 @@ cache/0/31/0/glyphs/3/size = Vector2(0, 0)
 cache/0/31/0/glyphs/3/uv_rect = Rect2(0, 0, 0, 0)
 cache/0/31/0/glyphs/3/texture_idx = -1
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vm72l"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.6913568, 0.69135684, 0.6913566, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkdbe"]
+bg_color = Color(0.5591323, 0.72188455, 0.9456286, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81klo"]
+bg_color = Color(5.7756904e-07, 0.6469755, 0.8997486, 1)
+
 [node name="Game" type="Node2D" unique_id=849719722]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=638832169]
@@ -1980,7 +1999,16 @@ label_settings = ExtResource("16_nnt18")
 [node name="FooterContainer" type="HBoxContainer" parent="UI/AdminPanel/VBoxContainer" unique_id=903221042]
 custom_minimum_size = Vector2(240, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 8
+
+[node name="ConfigButton" type="TextureButton" parent="UI/AdminPanel/VBoxContainer/FooterContainer" unique_id=1802621235]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("25_22asu")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="SkinUnlocked" type="Panel" parent="UI" unique_id=1480547463]
 visible = false
@@ -2088,9 +2116,153 @@ theme_override_styles/normal = ExtResource("21_vm72l")
 theme_override_styles/hover = ExtResource("22_vm72l")
 text = "Ok, Thanks!"
 
+[node name="ConfigPanel" type="Panel" parent="UI" unique_id=621754380]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(500, 750)
+offset_left = 522.0
+offset_top = 139.0
+offset_right = 1022.0
+offset_bottom = 639.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_vm72l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/ConfigPanel" unique_id=978689324]
+custom_minimum_size = Vector2(480, 480)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -240.0
+offset_right = 240.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=441490273]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer" unique_id=1510065357]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Music Volume:"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer" unique_id=229462786]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fkdbe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_81klo")
+max_value = 1.0
+step = 0.01
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1864858533]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer2" unique_id=924589349]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "SFX Volume:"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer2" unique_id=1747817458]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_fkdbe")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_81klo")
+max_value = 1.0
+step = 0.01
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=427307094]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer3" unique_id=1147092611]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sound Credits:"
+label_settings = ExtResource("16_nnt18")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1421446110]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer4" unique_id=1247628556]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Background  Music:  Robot Sound Factory
+www.littlerobotsoundfactory.com"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1144371921]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer5" unique_id=1952274969]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Coin Effect:  Corporate Music Sound
+www.littlerobotsoundfactory.com"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1581673565]
+custom_minimum_size = Vector2(480, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer6" unique_id=1743620926]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "UI Effects: Kenney Assets
+https://www.kenney.nl/assets"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
 [connection signal="on_customer_spawn" from="CustomerManager" to="UI/AdminPanel" method="_on_customer_manager_on_customer_spawn"]
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/InspectorImage/SelectSkinLeftButton" to="UI/AdminPanel" method="_on_select_skin_left_button_pressed"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/InspectorImage/SelectSkinRightButton" to="UI/AdminPanel" method="_on_select_skin_right_button_pressed"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Button Container/Button" to="UI/AdminPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/AdminPanel/VBoxContainer/FooterContainer/ConfigButton" to="UI/AdminPanel" method="_on_config_button_pressed"]
 [connection signal="pressed" from="UI/SkinUnlocked/VBoxContainer/Button/ButtonThanks" to="UI/AdminPanel" method="_on_button_thanks_pressed"]
+[connection signal="value_changed" from="UI/ConfigPanel/VBoxContainer/HBoxContainer/MusicSlider" to="UI/AdminPanel" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="UI/ConfigPanel/VBoxContainer/HBoxContainer2/SFXSlider" to="UI/AdminPanel" method="_on_sfx_slider_value_changed"]

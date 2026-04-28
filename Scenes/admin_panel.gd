@@ -28,6 +28,7 @@ class_name AdminPanel
 @export var customers_waiting_quantity_label: Label
 @export var select_skin_left_button: TextureButton
 @export var select_skin_right_button: TextureButton
+@onready var config_panel: Panel = %ConfigPanel
 
 var current_washer: WashingMachine
 var last_washer: WashingMachine
@@ -48,6 +49,7 @@ func _process(_delta: float) -> void:
 	current_coins_label.text = GameManager.format_coins(GameManager.current_coins)
 
 func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
+	SoundManager.play_washer_selected()
 	if !last_washer:
 		last_washer = washer
 	if last_washer != washer:
@@ -88,6 +90,7 @@ func _on_customer_manager_on_customer_spawn(customersWaiting: Array[Customer]) -
 
 func _on_button_pressed() -> void:
 	if GameManager.current_coins >= GameManager.get_upgrade_cost(current_washer.wash_level):
+		SoundManager.play_washer_bought()
 		GameManager.current_coins -= GameManager.get_upgrade_cost(current_washer.wash_level)
 		current_washer.level_up()
 
@@ -100,6 +103,7 @@ func glow_off(washingMachine: WashingMachine):
 	washingMachine.body.self_modulate = Color(1, 1, 1, 1)
 
 func _on_skin_unlocked(washingMachineSkinUnlocked: CompressedTexture2D) -> void:
+	SoundManager.play_skin_unlocked()
 	skin_unlocked.show()
 	select_skin_left_button.show()
 	select_skin_right_button.show()
@@ -115,3 +119,20 @@ func _on_select_skin_left_button_pressed() -> void:
 
 func _on_select_skin_right_button_pressed() -> void:
 	current_wash_machine_texture.texture = current_washer.next_skin()
+
+
+func _on_config_button_pressed() -> void:
+	if config_panel.visible:
+		config_panel.visible = false
+	else:
+		config_panel.visible = true
+
+
+func _on_music_slider_value_changed(value: float) -> void:
+	var sfx_index = AudioServer.get_bus_index("MusicBus")
+	AudioServer.set_bus_volume_db(sfx_index, linear_to_db(value))
+
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	var sfx_index = AudioServer.get_bus_index("SFX")
+	AudioServer.set_bus_volume_db(sfx_index, linear_to_db(value))
