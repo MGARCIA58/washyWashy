@@ -21,6 +21,7 @@ enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALK
 @onready var lane_b: Marker2D
 @onready var lane_c: Marker2D
 
+const COIN_VFX = preload("uid://bkxu01pi4e3tg")
 const wash_0 = preload("uid://ckf4yi7wfw8tk")
 const wash_1 = preload("uid://34kbjhghgvmh")
 const wash_2 = preload("uid://cr2yd674nooje")
@@ -165,3 +166,12 @@ func checkUnlockedSkins() -> void:
 		on_skin_unlocked.emit(wash_skin_6)
 		islevel6SkinMachinesUnlocked = true
 	
+
+func play_coin_vfx(spawn_pos: Vector2) -> void:
+	var coin_instance = COIN_VFX.instantiate()
+	get_tree().root.add_child(coin_instance)
+	#SoundManager.play_coins()
+	var new_pos := Vector2(spawn_pos.x + 50, spawn_pos.y - 60)
+	coin_instance.global_position = new_pos
+	coin_instance.emitting = true
+	coin_instance.finished.connect(func(): coin_instance.queue_free())
