@@ -2242,6 +2242,7 @@ theme_override_styles/hover = ExtResource("22_vm72l")
 text = "CLOSE"
 
 [node name="FinishGame" type="Panel" parent="UI" unique_id=189824968]
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(500, 1000)
 offset_left = 549.0
