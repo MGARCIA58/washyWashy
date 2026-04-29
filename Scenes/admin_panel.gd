@@ -28,6 +28,7 @@ class_name AdminPanel
 @export var customers_waiting_quantity_label: Label
 @export var select_skin_left_button: TextureButton
 @export var select_skin_right_button: TextureButton
+@export var finish_game: Panel
 @onready var config_panel: Panel = %ConfigPanel
 
 var current_washer: WashingMachine
@@ -136,3 +137,18 @@ func _on_music_slider_value_changed(value: float) -> void:
 func _on_sfx_slider_value_changed(value: float) -> void:
 	var sfx_index = AudioServer.get_bus_index("SFX")
 	AudioServer.set_bus_volume_db(sfx_index, linear_to_db(value))
+
+
+func _on_close_credits_button_pressed() -> void:
+	finish_game.hide()
+
+
+func _on_show_credits_button_pressed() -> void:
+	if finish_game.visible:
+		finish_game.visible = false
+	else:
+		finish_game.visible = true
+
+
+func _on_close_config_button_pressed() -> void:
+	config_panel.hide()

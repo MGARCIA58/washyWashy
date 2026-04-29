@@ -25,6 +25,8 @@
 [ext_resource type="StyleBox" uid="uid://dgwsobs0f5rvu" path="res://Scenes/button_hover.tres" id="22_vm72l"]
 [ext_resource type="Texture2D" uid="uid://cwbwwornl2wtg" path="res://UI/arrow_decorative_e.png" id="23_22asu"]
 [ext_resource type="Texture2D" uid="uid://ciesugfqnaerr" path="res://UI/settings.png" id="25_22asu"]
+[ext_resource type="Texture2D" uid="uid://dstw1guh8341" path="res://UI/about.png" id="26_fkdbe"]
+[ext_resource type="Texture2D" uid="uid://l7h5ec4rm2f4" path="res://UI/RAYITA_GAMES_2.png" id="27_81klo"]
 
 [sub_resource type="Environment" id="Environment_7nbq1"]
 glow_enabled = true
@@ -1297,6 +1299,26 @@ bg_color = Color(0.5591323, 0.72188455, 0.9456286, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81klo"]
 bg_color = Color(5.7756904e-07, 0.6469755, 0.8997486, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_22asu"]
+font = ExtResource("13_nnt18")
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tgy6u"]
+font = ExtResource("13_nnt18")
+font_size = 25
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwurv"]
+font = ExtResource("13_nnt18")
+font_size = 20
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_mucmn"]
+font = ExtResource("13_nnt18")
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D" unique_id=849719722]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=638832169]
@@ -1493,7 +1515,7 @@ position = Vector2(1070, 826)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
-[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_coins_label", "inspector_image", "level_container", "machine_stats_container", "upgrade_card", "skin_unlocked", "washer_unlocked", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label", "select_skin_left_button", "select_skin_right_button")]
+[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_coins_label", "inspector_image", "level_container", "machine_stats_container", "upgrade_card", "skin_unlocked", "washer_unlocked", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label", "select_skin_left_button", "select_skin_right_button", "finish_game")]
 offset_left = 1655.0
 offset_top = -1.0
 offset_right = 1915.0
@@ -1527,6 +1549,7 @@ machine_spaces_quantity_label = NodePath("VBoxContainer/StatsContainer/MachinesS
 customers_waiting_quantity_label = NodePath("VBoxContainer/StatsContainer/CustomersAwaitingContainer/CustomersWaitingQuantityLabel")
 select_skin_left_button = NodePath("VBoxContainer/InspectorImage/SelectSkinLeftButton")
 select_skin_right_button = NodePath("VBoxContainer/InspectorImage/SelectSkinRightButton")
+finish_game = NodePath("../FinishGame")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/AdminPanel" unique_id=301607592]
 layout_mode = 1
@@ -2000,13 +2023,22 @@ label_settings = ExtResource("16_nnt18")
 custom_minimum_size = Vector2(240, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
+alignment = 1
 
 [node name="ConfigButton" type="TextureButton" parent="UI/AdminPanel/VBoxContainer/FooterContainer" unique_id=1802621235]
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 6
 texture_normal = ExtResource("25_22asu")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ShowCreditsButton" type="TextureButton" parent="UI/AdminPanel/VBoxContainer/FooterContainer" unique_id=577111437]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 6
+texture_normal = ExtResource("26_fkdbe")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -2119,17 +2151,17 @@ text = "Ok, Thanks!"
 [node name="ConfigPanel" type="Panel" parent="UI" unique_id=621754380]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(500, 750)
+custom_minimum_size = Vector2(500, 250)
 offset_left = 522.0
 offset_top = 139.0
 offset_right = 1022.0
-offset_bottom = 639.0
+offset_bottom = 389.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_vm72l")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/ConfigPanel" unique_id=978689324]
-custom_minimum_size = Vector2(480, 480)
+custom_minimum_size = Vector2(480, 230)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2137,14 +2169,14 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -240.0
-offset_top = -240.0
+offset_top = -115.0
 offset_right = 240.0
-offset_bottom = 240.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=441490273]
-custom_minimum_size = Vector2(480, 100)
+custom_minimum_size = Vector2(480, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -2169,7 +2201,7 @@ max_value = 1.0
 step = 0.01
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1864858533]
-custom_minimum_size = Vector2(480, 100)
+custom_minimum_size = Vector2(480, 80)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -2193,15 +2225,203 @@ theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_81klo")
 max_value = 1.0
 step = 0.01
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=427307094]
-custom_minimum_size = Vector2(480, 100)
+[node name="CloseButton" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=994795952]
+custom_minimum_size = Vector2(480, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer3" unique_id=1147092611]
+[node name="CloseConfigButton" type="Button" parent="UI/ConfigPanel/VBoxContainer/CloseButton" unique_id=1100648651]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("21_vm72l")
+theme_override_styles/hover = ExtResource("22_vm72l")
+text = "CLOSE"
+
+[node name="FinishGame" type="Panel" parent="UI" unique_id=189824968]
+clip_contents = true
+custom_minimum_size = Vector2(500, 1000)
+offset_left = 549.0
+offset_top = 48.0
+offset_right = 1049.0
+offset_bottom = 1048.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = ExtResource("11_mg4q0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/FinishGame" unique_id=1290010814]
+custom_minimum_size = Vector2(480, 980)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -490.0
+offset_right = 240.0
+offset_bottom = 490.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1613127469]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="CongratulationsLabel" type="Label" parent="UI/FinishGame/VBoxContainer/TopContainer" unique_id=1202944251]
+layout_mode = 2
+text = "Washy Washy"
+label_settings = SubResource("LabelSettings_22asu")
+
+[node name="ThanksContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1614219639]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="ThanksLabel" type="Label" parent="UI/FinishGame/VBoxContainer/ThanksContainer" unique_id=890998634]
+layout_mode = 2
+text = "Thank You for playing!!"
+label_settings = SubResource("LabelSettings_tgy6u")
+
+[node name="Feedback" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=979915888]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 1
+
+[node name="FeedbackLabel" type="Label" parent="UI/FinishGame/VBoxContainer/Feedback" unique_id=1259591027]
+layout_mode = 2
+text = "I would appreciate your feedback"
+label_settings = SubResource("LabelSettings_cwurv")
+
+[node name="GameCredits" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=427307094]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/FinishGame/VBoxContainer/GameCredits" unique_id=1147092611]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Credits:"
+label_settings = ExtResource("16_nnt18")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CEOContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1144371921]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="CEOLabel" type="Label" parent="UI/FinishGame/VBoxContainer/CEOContainer" unique_id=1952274969]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "CEO: Rayita"
+label_settings = ExtResource("16_nnt18")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameDeveloperContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1421446110]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+alignment = 1
+
+[node name="GameDeveloperLabel" type="Label" parent="UI/FinishGame/VBoxContainer/GameDeveloperContainer" unique_id=1247628556]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Game Developer: Mike DVlogs"
+label_settings = ExtResource("16_nnt18")
+vertical_alignment = 1
+
+[node name="Logo" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=270296423]
+custom_minimum_size = Vector2(480, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/FinishGame/VBoxContainer/Logo" unique_id=740868058]
+custom_minimum_size = Vector2(200, 300)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("27_81klo")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArtCreditsContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1020519478]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="ArtCreditsLabel" type="Label" parent="UI/FinishGame/VBoxContainer/ArtCreditsContainer" unique_id=878209192]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Art Credits:"
+label_settings = ExtResource("16_nnt18")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KenneyAssetsContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=2002866405]
+custom_minimum_size = Vector2(480, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="KennyAssetsContainer" type="Label" parent="UI/FinishGame/VBoxContainer/KenneyAssetsContainer" unique_id=295632323]
 custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Kenney Assets
+https://www.kenney.nl/assets"
+label_settings = ExtResource("16_nnt18")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CrazyBlueIconsContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1156284601]
+custom_minimum_size = Vector2(480, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="CrazyBlueIconsLabel" type="Label" parent="UI/FinishGame/VBoxContainer/CrazyBlueIconsContainer" unique_id=402328115]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Daniel Maluszczak
+https://opengameart.org/content/crazy-blue-icons
+"
+label_settings = SubResource("LabelSettings_mucmn")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SoundCreditsContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=775255966]
+custom_minimum_size = Vector2(480, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="SoundCreditsLabel" type="Label" parent="UI/FinishGame/VBoxContainer/SoundCreditsContainer" unique_id=456279105]
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Sound Credits:"
@@ -2209,14 +2429,14 @@ label_settings = ExtResource("16_nnt18")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1421446110]
-custom_minimum_size = Vector2(480, 100)
+[node name="BackgroundMusicContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=260248361]
+custom_minimum_size = Vector2(480, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer4" unique_id=1247628556]
+[node name="BackgroundMusicLabel" type="Label" parent="UI/FinishGame/VBoxContainer/BackgroundMusicContainer" unique_id=1358243006]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -2225,14 +2445,14 @@ www.littlerobotsoundfactory.com"
 label_settings = ExtResource("16_nnt18")
 vertical_alignment = 1
 
-[node name="HBoxContainer5" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1144371921]
-custom_minimum_size = Vector2(480, 100)
+[node name="CoinEffectContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=866992891]
+custom_minimum_size = Vector2(480, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer5" unique_id=1952274969]
+[node name="CoinEffectLabel" type="Label" parent="UI/FinishGame/VBoxContainer/CoinEffectContainer" unique_id=124362651]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -2241,14 +2461,14 @@ www.littlerobotsoundfactory.com"
 label_settings = ExtResource("16_nnt18")
 vertical_alignment = 1
 
-[node name="HBoxContainer6" type="HBoxContainer" parent="UI/ConfigPanel/VBoxContainer" unique_id=1581673565]
-custom_minimum_size = Vector2(480, 100)
+[node name="UIEffectsContainer" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=146147665]
+custom_minimum_size = Vector2(480, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 alignment = 1
 
-[node name="Label" type="Label" parent="UI/ConfigPanel/VBoxContainer/HBoxContainer6" unique_id=1743620926]
+[node name="UIEffectsLabel" type="Label" parent="UI/FinishGame/VBoxContainer/UIEffectsContainer" unique_id=494287900]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -2257,12 +2477,31 @@ https://www.kenney.nl/assets"
 label_settings = ExtResource("16_nnt18")
 vertical_alignment = 1
 
+[node name="CloseButton" type="HBoxContainer" parent="UI/FinishGame/VBoxContainer" unique_id=1270808512]
+custom_minimum_size = Vector2(480, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="CloseCreditsButton" type="Button" parent="UI/FinishGame/VBoxContainer/CloseButton" unique_id=1890795813]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = ExtResource("21_vm72l")
+theme_override_styles/hover = ExtResource("22_vm72l")
+text = "CLOSE CREDITS"
+
 [connection signal="on_customer_spawn" from="CustomerManager" to="UI/AdminPanel" method="_on_customer_manager_on_customer_spawn"]
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/InspectorImage/SelectSkinLeftButton" to="UI/AdminPanel" method="_on_select_skin_left_button_pressed"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/InspectorImage/SelectSkinRightButton" to="UI/AdminPanel" method="_on_select_skin_right_button_pressed"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/UpgradeCard/VBoxContainer/Button Container/Button" to="UI/AdminPanel" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/AdminPanel/VBoxContainer/FooterContainer/ConfigButton" to="UI/AdminPanel" method="_on_config_button_pressed"]
+[connection signal="pressed" from="UI/AdminPanel/VBoxContainer/FooterContainer/ShowCreditsButton" to="UI/AdminPanel" method="_on_show_credits_button_pressed"]
 [connection signal="pressed" from="UI/SkinUnlocked/VBoxContainer/Button/ButtonThanks" to="UI/AdminPanel" method="_on_button_thanks_pressed"]
 [connection signal="value_changed" from="UI/ConfigPanel/VBoxContainer/HBoxContainer/MusicSlider" to="UI/AdminPanel" method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="UI/ConfigPanel/VBoxContainer/HBoxContainer2/SFXSlider" to="UI/AdminPanel" method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="UI/ConfigPanel/VBoxContainer/CloseButton/CloseConfigButton" to="UI/AdminPanel" method="_on_close_config_button_pressed"]
+[connection signal="pressed" from="UI/FinishGame/VBoxContainer/CloseButton/CloseCreditsButton" to="UI/AdminPanel" method="_on_close_credits_button_pressed"]
