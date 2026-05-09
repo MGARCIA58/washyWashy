@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dxkuk57gopqqd" path="res://Assets/Background/base.png" id="1_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://cslcrpma22lwh" path="res://Assets/Background/pared.png" id="2_3dryh"]
-[ext_resource type="Script" uid="uid://c2gw0st8vi2ln" path="res://Scenes/customer_manager.gd" id="4_3dryh"]
+[ext_resource type="Script" path="res://Scenes/customer_manager.gd" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://b8l1j3lwsc03y" path="res://Scenes/customer.tscn" id="4_wowpa"]
 [ext_resource type="Script" uid="uid://d4akkdny7sw7b" path="res://Resources/customer_bodies.gd" id="5_h4fw4"]
 [ext_resource type="Resource" uid="uid://ga1sy1hm0y4k" path="res://Resources/c1.tres" id="6_ldgsr"]
@@ -11,7 +11,7 @@
 [ext_resource type="Resource" uid="uid://ckpxwn1v1kf8w" path="res://Resources/c4.tres" id="9_rfjv2"]
 [ext_resource type="StyleBox" uid="uid://c0q0jrvmq0q8n" path="res://Scenes/panel.tres" id="11_mg4q0"]
 [ext_resource type="PackedScene" uid="uid://bb8ut3y60a13o" path="res://Scenes/washing_machine.tscn" id="11_o5yvi"]
-[ext_resource type="Script" uid="uid://dj3qyw4tsoxcf" path="res://Scenes/admin_panel.gd" id="12_exi56"]
+[ext_resource type="Script" path="res://Scenes/admin_panel.gd" id="12_exi56"]
 [ext_resource type="Texture2D" uid="uid://ckf4yi7wfw8tk" path="res://Assets/Washers/wash0.png" id="12_nb51f"]
 [ext_resource type="FontFile" uid="uid://bl06gch0bh3e1" path="res://UI/Kenney Future.ttf" id="13_nnt18"]
 [ext_resource type="Texture2D" uid="uid://34kbjhghgvmh" path="res://Assets/Washers/wash1.png" id="14_ewbju"]

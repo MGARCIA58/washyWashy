@@ -35,7 +35,7 @@ func level_up() -> void:
 		0:
 			body.texture = wash_0
 		1:
-			coin_quantity = 5
+			coin_quantity = 9
 			time_quantity = 8
 			body.texture = wash_1
 			body.scale *= 2
@@ -88,7 +88,7 @@ func get_coin_time_when_level_up() -> Array[int]:
 	var local_upgrade_coin_percentage = upgrade_coin_percentage
 	match local_wash_level:
 		1:
-			local_coin_quantity = 5
+			local_coin_quantity = 9
 			local_time_quantity = 8
 			local_upgrade_coin_percentage = 1
 		2:
