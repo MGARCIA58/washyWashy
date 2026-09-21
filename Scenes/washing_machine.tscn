@@ -8,7 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://d157qdcf1rpe8" path="res://Assets/Washers/wash4.png" id="6_ev73b"]
 [ext_resource type="Texture2D" uid="uid://dxiijg2x2uwuu" path="res://Assets/Washers/wash5.png" id="7_rityg"]
 [ext_resource type="Texture2D" uid="uid://db6j6282uurql" path="res://Assets/Washers/wash6.png" id="8_tl235"]
+[ext_resource type="Texture2D" uid="uid://65p10q4uctjk" path="res://Assets/Washers/og/Wash_0.png" id="9_4hwrc"]
 [ext_resource type="PackedScene" uid="uid://dx46sp0ce4bvf" path="res://Scenes/washing_bar.tscn" id="9_pk6di"]
+[ext_resource type="Texture2D" uid="uid://crwcgahvs10t8" path="res://Assets/Washers/og/Wash_1.png" id="10_da76g"]
+[ext_resource type="Texture2D" uid="uid://dicam4v8ejj7q" path="res://Assets/Washers/og/Wash_2.png" id="11_g0hsi"]
+[ext_resource type="Texture2D" uid="uid://dscld865o5dd8" path="res://Assets/Washers/og/Wash_3.png" id="12_5v2lc"]
+[ext_resource type="Texture2D" uid="uid://btgkavcbawqog" path="res://Assets/Washers/og/Wash_4.png" id="13_ver1h"]
+[ext_resource type="Texture2D" uid="uid://w5d4ny28wrwr" path="res://Assets/Washers/og/Wash_5.png" id="14_olq8j"]
+[ext_resource type="Texture2D" uid="uid://cirnwj5oc21ox" path="res://Assets/Washers/og/Wash_6.png" id="15_vsyin"]
 
 [sub_resource type="Animation" id="Animation_pk6di"]
 length = 0.001
@@ -185,6 +192,13 @@ wash_3 = ExtResource("5_byjw2")
 wash_4 = ExtResource("6_ev73b")
 wash_5 = ExtResource("7_rityg")
 wash_6 = ExtResource("8_tl235")
+washOG_0 = ExtResource("9_4hwrc")
+washOG_1 = ExtResource("10_da76g")
+washOG_2 = ExtResource("11_g0hsi")
+washOG_3 = ExtResource("12_5v2lc")
+washOG_4 = ExtResource("13_ver1h")
+washOG_5 = ExtResource("14_olq8j")
+washOG_6 = ExtResource("15_vsyin")
 body = NodePath("Body")
 
 [node name="Body" type="Sprite2D" parent="." unique_id=1581394186]

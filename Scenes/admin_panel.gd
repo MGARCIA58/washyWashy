@@ -30,6 +30,8 @@ class_name AdminPanel
 @export var select_skin_right_button: TextureButton
 @export var finish_game: Panel
 @onready var config_panel: Panel = %ConfigPanel
+@export var washOG_0: CompressedTexture2D
+@export var wash_0: CompressedTexture2D
 
 var current_washer: WashingMachine
 var last_washer: WashingMachine
@@ -38,6 +40,7 @@ func _ready() -> void:
 	GameManager.on_washer_selected.connect(_on_washing_machine_on_washer_selected)
 	GameManager.on_level_up.connect(_on_level_up)
 	GameManager.on_skin_unlocked.connect(_on_skin_unlocked)
+	GameManager.on_AIAssetChange.connect(_on_AIAssetChange)
 	total_machines_quantity_label.text = str(GameManager.my_washers)
 	level_1_machines_quantity.text = str(GameManager.level_1_machines_quantity)
 	level_2_machines_quantity.text = str(GameManager.level_2_machines_quantity)
@@ -45,6 +48,10 @@ func _ready() -> void:
 	level_4_machines_quantity.text = str(GameManager.level_4_machines_quantity)
 	level_5_machines_quantity.text = str(GameManager.level_5_machines_quantity)
 	level_6_machines_quantity.text = str(GameManager.level_6_machines_quantity)
+	if(GameManager.isAIAssetActive):
+		current_wash_machine_texture.texture = wash_0
+	else:
+		current_wash_machine_texture.texture = washOG_0
 
 func _process(_delta: float) -> void:
 	current_coins_label.text = GameManager.format_coins(GameManager.current_coins)
@@ -75,6 +82,22 @@ func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
 	upgrade_coin_quantity.text = GameManager.format_coins(arrayCoinTime[0])
 	upgrade_time_quantity.text = str(arrayCoinTime[1])
 	button.text = GameManager.format_coins(GameManager.get_upgrade_cost(washer.wash_level))
+	
+func _on_AIAssetChange() -> void:
+	if(not current_washer):
+		if(GameManager.isAIAssetActive):
+			current_wash_machine_texture.texture = wash_0
+		else:
+			current_wash_machine_texture.texture = washOG_0
+		return
+	if(current_washer.wash_level == 0):
+		if(GameManager.isAIAssetActive):
+			current_wash_machine_texture.texture = wash_0
+		else:
+			current_wash_machine_texture.texture = washOG_0
+		return
+		
+	current_wash_machine_texture.texture = current_washer.body.texture
 
 func _on_level_up(washer: WashingMachine) -> void:
 	total_machines_quantity_label.text = str(GameManager.my_washers)
@@ -152,3 +175,7 @@ func _on_show_credits_button_pressed() -> void:
 
 func _on_close_config_button_pressed() -> void:
 	config_panel.hide()
+
+
+func _on_check_button_pressed() -> void:
+	GameManager.toogleAIAsset()

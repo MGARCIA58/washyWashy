@@ -1320,9 +1320,11 @@ font = ExtResource("13_nnt18")
 font_size = 12
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tgy6u"]
+bg_color = Color(1.347661e-06, 0.6424271, 0.6424269, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_8m3t6"]
 font = ExtResource("13_nnt18")
-font_size = 22
 
 [node name="Game" type="Node2D" unique_id=849719722]
 
@@ -1520,7 +1522,7 @@ position = Vector2(1070, 826)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=215821370]
 
-[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454 node_paths=PackedStringArray("current_coins_label", "inspector_image", "level_container", "machine_stats_container", "upgrade_card", "skin_unlocked", "washer_unlocked", "current_wash_machine_texture", "level_label", "coin_quantity", "time_quantity", "wash_machine_asset", "upgrade_coin_quantity", "upgrade_time_quantity", "button", "total_machines_quantity_label", "level_1_machines_quantity", "level_2_machines_quantity", "level_3_machines_quantity", "level_4_machines_quantity", "level_5_machines_quantity", "level_6_machines_quantity", "machine_spaces_quantity_label", "customers_waiting_quantity_label", "select_skin_left_button", "select_skin_right_button", "finish_game")]
+[node name="AdminPanel" type="Panel" parent="UI" unique_id=564250454]
 offset_left = 1655.0
 offset_top = -1.0
 offset_right = 1915.0
@@ -1528,33 +1530,6 @@ offset_bottom = 1079.0
 size_flags_horizontal = 4
 theme_override_styles/panel = ExtResource("11_mg4q0")
 script = ExtResource("12_exi56")
-current_coins_label = NodePath("VBoxContainer/CoinsContainer/CurrentCoinsLabel")
-inspector_image = NodePath("VBoxContainer/InspectorImage")
-level_container = NodePath("VBoxContainer/LevelContainer")
-machine_stats_container = NodePath("VBoxContainer/MachineStatsContainer")
-upgrade_card = NodePath("VBoxContainer/UpgradeCard")
-skin_unlocked = NodePath("../SkinUnlocked")
-washer_unlocked = NodePath("../SkinUnlocked/VBoxContainer/SkinUnlockedImages/WasherUnlocked")
-current_wash_machine_texture = NodePath("VBoxContainer/InspectorImage/CurrentWashMachineTexture")
-level_label = NodePath("VBoxContainer/LevelContainer/LevelLabel")
-coin_quantity = NodePath("VBoxContainer/MachineStatsContainer/CoinsPerClothContainer/CoinQuantity")
-time_quantity = NodePath("VBoxContainer/MachineStatsContainer/TimePerClothContainer/TimeQuantity")
-wash_machine_asset = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Head Card/WashMachineAsset")
-upgrade_coin_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/CoinsPerClothContainer/UpgradeCoinQuantity")
-upgrade_time_quantity = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/TimePerClothContainer/UpgradeTimeQuantity")
-button = NodePath("VBoxContainer/UpgradeCard/VBoxContainer/Button Container/Button")
-total_machines_quantity_label = NodePath("VBoxContainer/StatsContainer/MyMachinesContainer/TotalMachinesQuantityLabel")
-level_1_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level1MachinesContainer/Level1MachinesQuantity")
-level_2_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level2MachinesContainer/Level2MachinesQuantity")
-level_3_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level3MachinesContainer/Level3MachinesQuantity")
-level_4_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level4MachinesContainer/Level4MachinesQuantity")
-level_5_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level5MachinesContainer/Level5MachinesQuantity")
-level_6_machines_quantity = NodePath("VBoxContainer/StatsContainer/Level6MachinesContainer/Level6MachinesQuantity")
-machine_spaces_quantity_label = NodePath("VBoxContainer/StatsContainer/MachinesSpacesContainer/MachineSpacesQuantityLabel")
-customers_waiting_quantity_label = NodePath("VBoxContainer/StatsContainer/CustomersAwaitingContainer/CustomersWaitingQuantityLabel")
-select_skin_left_button = NodePath("VBoxContainer/InspectorImage/SelectSkinLeftButton")
-select_skin_right_button = NodePath("VBoxContainer/InspectorImage/SelectSkinRightButton")
-finish_game = NodePath("../FinishGame")
 washOG_0 = ExtResource("13_tgy6u")
 wash_0 = ExtResource("12_nb51f")
 
@@ -2505,37 +2480,39 @@ text = "CLOSE CREDITS"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=653972566]
 
-[node name="Panel" type="Panel" parent="CanvasLayer" unique_id=1958105484]
-offset_right = 215.0
-offset_bottom = 67.0
-size_flags_horizontal = 4
-size_flags_vertical = 4
+[node name="AdminPanel" type="Panel" parent="CanvasLayer" unique_id=2024710088]
+offset_left = 60.0
+offset_top = 32.0
+offset_right = 243.59999
+offset_bottom = 98.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_tgy6u")
+script = ExtResource("12_exi56")
+metadata/_custom_type_script = "uid://dj3qyw4tsoxcf"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel" unique_id=357887394]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/AdminPanel" unique_id=357887394]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -94.5
-offset_top = -13.0
-offset_right = 94.5
-offset_bottom = 13.0
+offset_left = -59.0
+offset_top = -12.0
+offset_right = 59.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer" unique_id=1820803541]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/AdminPanel/VBoxContainer" unique_id=1820803541]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=706875915]
+[node name="Label" type="Label" parent="CanvasLayer/AdminPanel/VBoxContainer/HBoxContainer" unique_id=706875915]
 layout_mode = 2
 text = "AI Assets"
 label_settings = SubResource("LabelSettings_8m3t6")
 
-[node name="CheckButton" type="CheckButton" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer" unique_id=1567335249]
+[node name="CheckButton" type="CheckButton" parent="CanvasLayer/AdminPanel/VBoxContainer/HBoxContainer" unique_id=1567335249]
 layout_mode = 2
-theme_override_colors/button_checked_color = Color(0, 1, 1, 1)
 
 [connection signal="on_customer_spawn" from="CustomerManager" to="UI/AdminPanel" method="_on_customer_manager_on_customer_spawn"]
 [connection signal="timeout" from="CustomerManager/Timer" to="CustomerManager" method="_on_timer_timeout"]
@@ -2549,4 +2526,4 @@ theme_override_colors/button_checked_color = Color(0, 1, 1, 1)
 [connection signal="value_changed" from="UI/ConfigPanel/VBoxContainer/HBoxContainer2/SFXSlider" to="UI/AdminPanel" method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="UI/ConfigPanel/VBoxContainer/CloseButton/CloseConfigButton" to="UI/AdminPanel" method="_on_close_config_button_pressed"]
 [connection signal="pressed" from="UI/FinishGame/VBoxContainer/CloseButton/CloseCreditsButton" to="UI/AdminPanel" method="_on_close_credits_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/CheckButton" to="UI/AdminPanel" method="_on_check_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/AdminPanel/VBoxContainer/HBoxContainer/CheckButton" to="UI/AdminPanel" method="_on_check_button_pressed"]

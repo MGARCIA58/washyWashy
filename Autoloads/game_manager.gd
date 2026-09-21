@@ -6,9 +6,10 @@ signal on_move_line()
 signal on_moveCustomerToWashingMachine()
 signal on_moveCustomerToExit(washer: WashingMachine, customer: Customer)
 signal on_skin_unlocked(washingMachineSkinUnlocked:CompressedTexture2D)
-
+signal on_AIAssetChange()
 enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALKING_DIRTY_BACK, LOADING_LAUNDRY}
 
+@export var isAIAssetActive : bool = false
 @export var level_1_machines_quantity: int = 0
 @export var level_2_machines_quantity: int = 0
 @export var level_3_machines_quantity: int = 0
@@ -36,12 +37,28 @@ const wash_skin_4 = preload("uid://cfkpvqt6kpat4")
 const wash_skin_5 = preload("uid://dthjfc78ov4f7")
 const wash_skin_6 = preload("uid://bq1b72yw6huml")
 
+const WASH_SKIN_1 = preload("uid://f3nkv40voev4")
+const WASH_SKIN_2 = preload("uid://cknw3ypbh6drm")
+const WASH_SKIN_3 = preload("uid://bg5he825lpy8a")
+const WASH_SKIN_4 = preload("uid://cdu8o7mif5sdp")
+const WASH_SKIN_5 = preload("uid://cwon4niajsh6b")
+const WASH_SKIN_6 = preload("uid://dmkf4ye1a17e6")
+const WASH_0 = preload("uid://65p10q4uctjk")
+const WASH_1 = preload("uid://crwcgahvs10t8")
+const WASH_2 = preload("uid://dicam4v8ejj7q")
+const WASH_3 = preload("uid://dscld865o5dd8")
+const WASH_4 = preload("uid://btgkavcbawqog")
+const WASH_5 = preload("uid://w5d4ny28wrwr")
+const WASH_6 = preload("uid://cirnwj5oc21ox")
+
 
 
 var customersWaiting : Array[Customer] = []
 var availableWashingMachines: Array[WashingMachine]
 var current_coins = 0.0
 var unlockedWashingMachinesSkins: Array[CompressedTexture2D]
+var unlockedWashingMachinesOGSkins: Array[CompressedTexture2D]
+
 var level1MachinesUnlocked: int = 0
 var level2MachinesUnlocked: int = 0
 var level3MachinesUnlocked: int = 0
@@ -119,51 +136,96 @@ func assign_customer(washer: WashingMachine) -> void:
 func checkUnlockedSkins() -> void:
 	if level1MachinesUnlocked == 1 && !islevel1MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_1)
+		unlockedWashingMachinesOGSkins.append(WASH_1)
 		islevel1MachinesUnlocked = true
 	if level2MachinesUnlocked == 1 && !islevel2MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_2)
-		on_skin_unlocked.emit(wash_2)
+		unlockedWashingMachinesOGSkins.append(WASH_2)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_2)
+		else:
+			on_skin_unlocked.emit(WASH_2)
 		islevel2MachinesUnlocked = true
 	if level3MachinesUnlocked == 1 && !islevel3MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_3)
-		on_skin_unlocked.emit(wash_3)
+		unlockedWashingMachinesOGSkins.append(WASH_3)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_3)
+		else:
+			on_skin_unlocked.emit(WASH_3)
 		islevel3MachinesUnlocked = true
 	if level4MachinesUnlocked == 1 && !islevel4MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_4)
-		on_skin_unlocked.emit(wash_4)
+		unlockedWashingMachinesOGSkins.append(WASH_4)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_4)
+		else:
+			on_skin_unlocked.emit(WASH_4)
 		islevel4MachinesUnlocked = true
 	if level5MachinesUnlocked == 1 && !islevel5MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_5)
-		on_skin_unlocked.emit(wash_5)
+		unlockedWashingMachinesOGSkins.append(WASH_5)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_5)
+		else:
+			on_skin_unlocked.emit(WASH_5)
 		islevel5MachinesUnlocked = true
 	if level6MachinesUnlocked == 1 && !islevel6MachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_6)
-		on_skin_unlocked.emit(wash_6)
+		unlockedWashingMachinesOGSkins.append(WASH_6)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_6)
+		else:
+			on_skin_unlocked.emit(WASH_6)
 		islevel6MachinesUnlocked = true
 
 	if level1MachinesUnlocked == 8 && !islevel1SkinMachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_skin_1)
-		on_skin_unlocked.emit(wash_skin_1)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_1)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_1)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_1)
 		islevel1SkinMachinesUnlocked = true
 	if level2MachinesUnlocked == 8 && !islevel2SkinMachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_skin_2)
-		on_skin_unlocked.emit(wash_skin_2)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_2)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_2)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_2)
 		islevel2SkinMachinesUnlocked = true
 	if level3MachinesUnlocked == 8 && !islevel3SkinMachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_skin_3)
-		on_skin_unlocked.emit(wash_skin_3)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_3)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_3)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_3)
 		islevel3SkinMachinesUnlocked = true
 	if level4MachinesUnlocked == 8 && !islevel4SkinMachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_skin_4)
-		on_skin_unlocked.emit(wash_skin_4)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_4)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_4)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_4)
 		islevel4SkinMachinesUnlocked = true
 	if level5MachinesUnlocked == 8 && !islevel5SkinMachinesUnlocked:
-		on_skin_unlocked.emit(wash_skin_5)
-		islevel5SkinMachinesUnlocked = true
 		unlockedWashingMachinesSkins.append(wash_skin_5)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_5)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_5)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_5)
+		islevel5SkinMachinesUnlocked = true
 	if level6MachinesUnlocked == 8 && !islevel6SkinMachinesUnlocked:
 		unlockedWashingMachinesSkins.append(wash_skin_6)
-		on_skin_unlocked.emit(wash_skin_6)
+		unlockedWashingMachinesOGSkins.append(WASH_SKIN_6)
+		if(isAIAssetActive):
+			on_skin_unlocked.emit(wash_skin_6)
+		else:
+			on_skin_unlocked.emit(WASH_SKIN_6)
 		islevel6SkinMachinesUnlocked = true
 	
 
@@ -175,3 +237,7 @@ func play_coin_vfx(spawn_pos: Vector2) -> void:
 	coin_instance.global_position = new_pos
 	coin_instance.emitting = true
 	coin_instance.finished.connect(func(): coin_instance.queue_free())
+	
+func toogleAIAsset() -> void:
+	isAIAssetActive = !isAIAssetActive
+	on_AIAssetChange.emit()
