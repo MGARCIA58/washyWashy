@@ -1332,7 +1332,6 @@ environment = SubResource("Environment_7nbq1")
 
 [node name="Background" type="Node2D" parent="." unique_id=964466233]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-138, 0)
 
 [node name="Background_Base" type="Sprite2D" parent="Background" unique_id=1174361863]
@@ -1347,6 +1346,7 @@ texture = ExtResource("2_3dryh")
 
 [node name="Background2" type="Node2D" parent="." unique_id=365062046]
 unique_name_in_owner = true
+visible = false
 position = Vector2(-138, 0)
 
 [node name="Background_Base" type="Sprite2D" parent="Background2" unique_id=1958344855]

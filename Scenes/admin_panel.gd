@@ -32,6 +32,9 @@ class_name AdminPanel
 @onready var config_panel: Panel = %ConfigPanel
 @export var washOG_0: CompressedTexture2D
 @export var wash_0: CompressedTexture2D
+@onready var background: Node2D = %Background
+@onready var background_2: Node2D = %Background2
+
 
 var current_washer: WashingMachine
 var last_washer: WashingMachine
@@ -84,6 +87,12 @@ func _on_washing_machine_on_washer_selected(washer: WashingMachine) -> void:
 	button.text = GameManager.format_coins(GameManager.get_upgrade_cost(washer.wash_level))
 	
 func _on_AIAssetChange() -> void:
+	if(GameManager.isAIAssetActive):
+		background.visible = true
+		background_2.visible = false
+	else:
+		background.visible = false
+		background_2.visible = true
 	if(not current_washer):
 		if(GameManager.isAIAssetActive):
 			current_wash_machine_texture.texture = wash_0

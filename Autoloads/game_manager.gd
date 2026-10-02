@@ -22,6 +22,7 @@ enum character_state {WAITING, WAITING_DIRTY, WALKING_CLEAN, WALKING_DIRTY, WALK
 @onready var lane_b: Marker2D
 @onready var lane_c: Marker2D
 
+
 const COIN_VFX = preload("uid://bkxu01pi4e3tg")
 const wash_0 = preload("uid://ckf4yi7wfw8tk")
 const wash_1 = preload("uid://34kbjhghgvmh")
