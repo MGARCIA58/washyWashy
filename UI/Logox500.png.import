@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://l7h5ec4rm2f4"
-path="res://.godot/imported/RAYITA_GAMES_2.png-a83bedfee7a74997005dbb1acd156d19.ctex"
+uid="uid://c8naewis04s8u"
+path="res://.godot/imported/Logox500.png-eefd79c0ca01b44411b006244455b010.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/RAYITA_GAMES_2.png"
-dest_files=["res://.godot/imported/RAYITA_GAMES_2.png-a83bedfee7a74997005dbb1acd156d19.ctex"]
+source_file="res://UI/Logox500.png"
+dest_files=["res://.godot/imported/Logox500.png-eefd79c0ca01b44411b006244455b010.ctex"]
 
 [params]
 

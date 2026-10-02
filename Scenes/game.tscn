@@ -28,7 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://cwbwwornl2wtg" path="res://UI/arrow_decorative_e.png" id="23_22asu"]
 [ext_resource type="Texture2D" uid="uid://ciesugfqnaerr" path="res://UI/settings.png" id="25_22asu"]
 [ext_resource type="Texture2D" uid="uid://dstw1guh8341" path="res://UI/about.png" id="26_fkdbe"]
-[ext_resource type="Texture2D" uid="uid://l7h5ec4rm2f4" path="res://UI/RAYITA_GAMES_2.png" id="27_81klo"]
+[ext_resource type="Texture2D" uid="uid://c8naewis04s8u" path="res://UI/Logox500.png" id="29_cwurv"]
 
 [sub_resource type="Environment" id="Environment_7nbq1"]
 glow_enabled = true
@@ -2380,7 +2380,7 @@ custom_minimum_size = Vector2(200, 300)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("27_81klo")
+texture = ExtResource("29_cwurv")
 expand_mode = 1
 stretch_mode = 5
 
