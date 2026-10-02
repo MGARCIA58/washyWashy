@@ -2,10 +2,16 @@
 
 [ext_resource type="Script" uid="uid://d4akkdny7sw7b" path="res://Resources/customer_bodies.gd" id="1_bglhn"]
 [ext_resource type="Texture2D" uid="uid://b483t3jkicd0e" path="res://Assets/Characters/C1_loading_laundry.png" id="1_pt8ar"]
+[ext_resource type="Texture2D" uid="uid://cxgplnk33med4" path="res://Assets/Characters/OG/OGC1_loading_laundry.png" id="2_wu53a"]
 [ext_resource type="Texture2D" uid="uid://sxbry6ssceg6" path="res://Assets/Characters/C1_Waiting.png" id="3_lulpj"]
+[ext_resource type="Texture2D" uid="uid://7wn76x4xsoa4" path="res://Assets/Characters/OG/OGC1_Waiting.png" id="3_rg2s2"]
 [ext_resource type="Texture2D" uid="uid://yca6057cfh4l" path="res://Assets/Characters/C1_Waiting_Dirty.png" id="4_h3kan"]
+[ext_resource type="Texture2D" uid="uid://d055viffg2l50" path="res://Assets/Characters/OG/OGC1_Waiting_Dirty.png" id="4_ntvl1"]
+[ext_resource type="Texture2D" uid="uid://bte6ysmll0mlj" path="res://Assets/Characters/OG/OGC1_Walking_clean.png" id="5_h2jfw"]
 [ext_resource type="Texture2D" uid="uid://crakpyklssttp" path="res://Assets/Characters/C1_Walking_clean.png" id="5_s4313"]
 [ext_resource type="Texture2D" uid="uid://m5fnw1hyi51m" path="res://Assets/Characters/C1_Walking_dirty.png" id="6_3q328"]
+[ext_resource type="Texture2D" uid="uid://cofvr1rs5atkl" path="res://Assets/Characters/OG/OGC1_Walking_dirty.png" id="6_bkyvu"]
+[ext_resource type="Texture2D" uid="uid://duciqewud4u5m" path="res://Assets/Characters/OG/OGC1_Walking_dirty_back.png" id="7_4dj0u"]
 [ext_resource type="Texture2D" uid="uid://cw0a5y070umla" path="res://Assets/Characters/C1_Walking_dirty_back.png" id="7_tp65m"]
 
 [resource]
@@ -16,4 +22,10 @@ walking_clean = ExtResource("5_s4313")
 walking_dirty = ExtResource("6_3q328")
 walking_dirty_back = ExtResource("7_tp65m")
 loading_laundry = ExtResource("1_pt8ar")
+og_waiting_dirty = ExtResource("4_ntvl1")
+og_waiting = ExtResource("3_rg2s2")
+og_walking_clean = ExtResource("5_h2jfw")
+og_walking_dirty = ExtResource("6_bkyvu")
+og_walking_dirty_back = ExtResource("7_4dj0u")
+og_loading_laundry = ExtResource("2_wu53a")
 metadata/_custom_type_script = "uid://d4akkdny7sw7b"
